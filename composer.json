@@ -1,0 +1,33 @@
+{
+    "name": "skynettechnologies/sylius-allinoneaccessibility-plugin",
+    "type": "sylius-plugin",
+    "keywords": [
+        "sylius",
+        "sylius-plugin",
+        "sylius-allinoneaccessibility"
+    ],
+    "description": "This plugin add allinoneaccessibility to your Sylius project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Skynettechnologies\\SyliusAllinOneAccessibilityPlugin\\": "src/",
+            "Tests\\Skynettechnologies\\SyliusAllinOneAccessibilityPlugin\\": "tests/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/Application/Kernel.php"
+        ]
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php bin/create_node_symlink.php"
+        ],
+        "post-update-cmd": [
+            "php bin/create_node_symlink.php"
+        ],
+        "post-create-project-cmd": [
+            "php bin/create_node_symlink.php"
+        ]
+    }
+}

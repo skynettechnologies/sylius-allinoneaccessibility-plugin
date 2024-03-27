@@ -1,0 +1,30 @@
+services:
+    skynettechnologies_sylius_allinoneaccessibility_plugin.context.setup.allinoneaccessibility:
+        class: Tests\Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Behat\Context\Setup\AllinOneAccessibilityContext
+        public: true
+        arguments:
+            - '@skynettechnologies_sylius_allinoneaccessibility_plugin.factory.allinoneaccessibility'
+            - '@skynettechnologies_sylius_allinoneaccessibility_plugin.repository.allinoneaccessibility'
+            - '@skynettechnologies_sylius_allinoneaccessibility_plugin.manager.allinoneaccessibility'
+        tags:
+            - { name: fob.context_service }
+
+    skynettechnologies_sylius_allinoneaccessibility_plugin.context.transform.allinoneaccessibility:
+        class: Tests\Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Behat\Context\Transform\AllinOneAccessibilityContext
+        public: true
+        arguments:
+            - '@skynettechnologies_sylius_allinoneaccessibility_plugin.repository.allinoneaccessibility'
+        tags:
+            - { name: fob.context_service }
+
+    skynettechnologies_sylius_allinoneaccessibility_plugin.context.ui.admin.managing_allinoneaccessibilitys:
+        class: Tests\Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Behat\Context\Ui\Admin\ManagingAllinOneAccessibilityContext
+        public: true
+        arguments:
+            - '@sylius.behat.current_page_resolver'
+            - '@sylius.behat.notification_checker'
+            - '@skynettechnologies_sylius_allinoneaccessibility_plugin.page.admin.allinoneaccessibility.index_page'
+            - '@skynettechnologies_sylius_allinoneaccessibility_plugin.page.admin.allinoneaccessibility.create_page'
+            - '@skynettechnologies_sylius_allinoneaccessibility_plugin.page.admin.allinoneaccessibility.update_page'
+        tags:
+            - { name: fob.context_service }

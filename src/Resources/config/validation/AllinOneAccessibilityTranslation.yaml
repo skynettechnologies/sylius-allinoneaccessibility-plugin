@@ -1,0 +1,6 @@
+Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Entity\AllinOneAccessibilityTranslation:
+    properties:
+        imageFile:
+            - NotBlank:
+                message: 'skynettechnologies_sylius_allinoneaccessibility_plugin.allinoneaccessibility_translation.image_file.not_blank'
+                groups: ['skynettechnologies_image_create']

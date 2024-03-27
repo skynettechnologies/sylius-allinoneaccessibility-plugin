@@ -1,0 +1,17 @@
+default:
+    suites:
+        ui_managing_allinoneaccessibility:
+            contexts:
+                - sylius.behat.context.hook.doctrine_orm
+
+                - skynettechnologies_sylius_allinoneaccessibility_plugin.context.transform.allinoneaccessibility
+                - sylius.behat.context.transform.shared_storage
+
+                - sylius.behat.context.setup.channel
+                - sylius.behat.context.setup.admin_security
+                - skynettechnologies_sylius_allinoneaccessibility_plugin.context.setup.allinoneaccessibility
+
+                - skynettechnologies_sylius_allinoneaccessibility_plugin.context.ui.admin.managing_allinoneaccessibility
+                - sylius.behat.context.ui.admin.notification
+            filters:
+                tags: "@managing_allinoneaccessibility && @ui"

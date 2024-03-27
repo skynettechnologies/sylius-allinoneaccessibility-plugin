@@ -1,0 +1,19 @@
+Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Entity\AllinOneAccessibility:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [code]
+            message: 'skynettechnologies_sylius_allinoneaccessibility_plugin.allinoneaccessibility.code.unique'
+            groups: ['skynettechnologies']
+    properties:
+        code:
+            - NotBlank:
+                message: 'skynettechnologies_sylius_allinoneaccessibility_plugin.allinoneaccessibility.code.not_blank'
+                groups: ['skynettechnologies']
+            - Length:
+                min: 2
+                max: 250
+                minMessage: 'skynettechnologies_sylius_allinoneaccessibility_plugin.allinoneaccessibility.code.min_length'
+                maxMessage: 'skynettechnologies_sylius_allinoneaccessibility_plugin.allinoneaccessibility.code.max_length'
+                groups: ['skynettechnologies']
+        translations:
+            - Valid: ~

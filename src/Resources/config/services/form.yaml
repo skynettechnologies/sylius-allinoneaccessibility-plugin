@@ -1,0 +1,16 @@
+services:
+    skynettechnologies_sylius_allinoneaccessibility_plugin.form.type.allinoneaccessibility:
+        class: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Form\Type\AllinOneAccessibilityType
+        arguments:
+            - '%skynettechnologies_sylius_allinoneaccessibility_plugin.model.allinoneaccessibility.class%'
+            - ['skynettechnologies']
+        tags:
+            - { name: form.type, alias: skynettechnologies_sylius_allinoneaccessibility }
+
+    skynettechnologies_sylius_allinoneaccessibility_plugin.form.type.allinoneaccessibility_translation:
+        class: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Form\Type\AllinOneAccessibilityTranslationType
+        arguments:
+            - '%skynettechnologies_sylius_allinoneaccessibility_plugin.model.allinoneaccessibility_translation.class%'
+            - ['skynettechnologies']
+        tags:
+            - { name: form.type, alias: skynettechnologies_sylius_allinoneaccessibility_translation }

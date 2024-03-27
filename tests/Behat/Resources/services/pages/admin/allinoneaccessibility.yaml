@@ -1,0 +1,21 @@
+services:
+    skynettechnologies_sylius_allinoneaccessibility_plugin.page.admin.allinoneaccessibility.index_page:
+        class: Tests\Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Behat\Page\Admin\AllinOneAccessibility\IndexPage
+        parent: sylius.behat.page.admin.crud.index
+        public: false
+        arguments:
+            - 'skynettechnologies_sylius_allinoneaccessibility_plugin_admin_allinoneaccessibility_index'
+
+    skynettechnologies_sylius_allinoneaccessibility_plugin.page.admin.allinoneaccessibility.create_page:
+        class: Tests\Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Behat\Page\Admin\AllinOneAccessibility\CreatePage
+        parent: sylius.behat.page.admin.crud.create
+        public: false
+        arguments:
+            - 'skynettechnologies_sylius_allinoneaccessibility_plugin_admin_allinoneaccessibility_create'
+
+    skynettechnologies_sylius_allinoneaccessibility_plugin.page.admin.allinoneaccessibility.update_page:
+        class: Tests\Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Behat\Page\Admin\AllinOneAccessibility\UpdatePage
+        parent: sylius.behat.page.admin.crud.update
+        public: false
+        arguments:
+            - 'skynettechnologies_sylius_allinoneaccessibility_plugin_admin_allinoneaccessibility_update'

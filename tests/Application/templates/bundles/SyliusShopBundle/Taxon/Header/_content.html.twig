@@ -1,0 +1,7 @@
+<h1 class="ui monster section dividing header">
+    {{ taxon.name }}
+    <div class="sub header">{{ taxon.description }}</div>
+</h1>
+<h2 class="ui horizontal section">
+    {{ render(url('skynettechnologies_sylius_allinoneaccessibility_plugin_shop_partial_allinoneaccessibility_by_taxon', {'taxon': taxon.slug, 'template': '@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/Shop/AllinOneAccessibility/_allinoneaccessibility.html.twig'})) }}
+</h2>

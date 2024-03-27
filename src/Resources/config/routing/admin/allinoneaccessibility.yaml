@@ -1,0 +1,16 @@
+skynettechnologies_sylius_allinoneaccessibility_plugin_admin_allinoneaccessibility:
+    resource: |
+        alias: skynettechnologies_sylius_allinoneaccessibility_plugin.allinoneaccessibility
+        section: admin
+        templates: "@SyliusAdmin/Crud"
+        except: ['show']
+        redirect: index
+        grid: skynettechnologies_sylius_allinoneaccessibility_plugin_allinoneaccessibility
+        permission: true
+        vars:
+            all:
+                templates:
+                    form: '@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/Admin/AllinOneAccessibility/_form.html.twig'
+            index:
+                icon: image
+    type: sylius.resource

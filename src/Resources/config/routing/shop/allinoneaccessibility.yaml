@@ -1,0 +1,24 @@
+skynettechnologies_sylius_allinoneaccessibility_plugin_shop_partial_allinoneaccessibility:
+    path: /partial
+    methods: [GET]
+    defaults:
+        _controller: skynettechnologies_sylius_allinoneaccessibility_plugin.controller.allinoneaccessibility::indexAction
+        _sylius:
+            template: $template
+            repository:
+                method: findByChannel
+                arguments:
+                    - "expr:service('sylius.context.channel').getChannel()"
+
+skynettechnologies_sylius_allinoneaccessibility_plugin_shop_partial_allinoneaccessibility_by_taxon:
+    path: /partial/by-taxon
+    methods: [GET]
+    defaults:
+        _controller: skynettechnologies_sylius_allinoneaccessibility_plugin.controller.allinoneaccessibility::indexAction
+        _sylius:
+            template: $template
+            repository:
+                method: findByChannelAndTaxon
+                arguments:
+                    - "expr:service('sylius.context.channel').getChannel()"
+                    - "expr:service('sylius.repository.taxon').findOneBySlug($taxon, service('sylius.context.locale').getLocaleCode())"

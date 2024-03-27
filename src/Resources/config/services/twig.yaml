@@ -1,0 +1,7 @@
+services:
+    skynettechnologies_sylius_allinoneaccessibility_plugin.twig_extension.allinoneaccessibility:
+        class: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Twig\AllinOneAccessibilityExtension
+        arguments:
+            - '%skynettechnologies_sylius_allinoneaccessibility_plugin.slider%'
+        tags:
+            - { name: twig.extension }

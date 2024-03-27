@@ -1,0 +1,19 @@
+sylius_resource:
+    resources:
+        skynettechnologies_sylius_allinoneaccessibility_plugin.allinoneaccessibility:
+            driver: doctrine/orm
+            classes:
+                model: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Entity\AllinOneAccessibility
+                interface: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Entity\AllinOneAccessibilityInterface
+                form: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Form\Type\AllinOneAccessibilityType
+                repository: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Repository\AllinOneAccessibilityRepository
+                controller: Sylius\Bundle\ResourceBundle\Controller\ResourceController
+                factory: Sylius\Component\Resource\Factory\Factory
+            translation:
+                classes:
+                    model: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Entity\AllinOneAccessibilityTranslation
+                    interface: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Entity\AllinOneAccessibilityTranslationInterface
+                    form: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Form\Type\AllinOneAccessibilityTranslationType
+                    repository: Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository
+                    controller: Sylius\Bundle\ResourceBundle\Controller\ResourceController
+                    factory: Sylius\Component\Resource\Factory\Factory

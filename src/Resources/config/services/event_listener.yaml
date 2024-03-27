@@ -1,0 +1,24 @@
+services:
+    skynettechnologies_sylius_allinoneaccessibility_plugin.event_listener.admin.menu_builder:
+        class: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Menu\AdminMenuListener
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
+
+    skynettechnologies_sylius_allinoneaccessibility_plugin.block_event_listener.layout.allinoneaccessibility.stylesheets:
+        class: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Block\AllinOneAccessibilityCssBlockListener
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.stylesheets, method: onBlockEvent }
+
+    skynettechnologies_sylius_allinoneaccessibility_plugin.block_event_listener.layout.slider.stylesheets:
+        class: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Block\SliderCssBlockListener
+        arguments:
+            - '%skynettechnologies_sylius_allinoneaccessibility_plugin.slider%'
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.stylesheets, method: onBlockEvent }
+
+    skynettechnologies_sylius_allinoneaccessibility_plugin.block_event_listener.layout.slider.javascripts:
+        class: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Block\SliderJsBlockListener
+        arguments:
+            - '%skynettechnologies_sylius_allinoneaccessibility_plugin.slider%'
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.javascripts, method: onBlockEvent }

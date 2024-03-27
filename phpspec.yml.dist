@@ -1,0 +1,4 @@
+suites:
+    main:
+        namespace: Skynettechnologies\SyliusAllinOneAccessibilityPlugin
+        psr4_prefix: Skynettechnologies\SyliusAllinOneAccessibilityPlugin

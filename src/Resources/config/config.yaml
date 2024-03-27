@@ -1,0 +1,29 @@
+imports:
+    - { resource: resources.yaml }
+
+knp_gaufrette:
+    stream_wrapper: ~
+    adapters:
+        allinoneaccessibility_image:
+            local:
+                directory: "%sylius_core.public_dir%/media/allinoneaccessibility-image"
+                create: true
+    filesystems:
+        allinoneaccessibility_image_fs:
+            adapter: allinoneaccessibility_image
+
+
+liip_imagine:
+    loaders:
+        allinoneaccessibility_image:
+            filesystem:
+                data_root: "%sylius_core.public_dir%/media/allinoneaccessibility-image"
+    filter_sets:
+        skynettechnologies_sylius_allinoneaccessibility_plugin_image:
+            data_loader: allinoneaccessibility_image
+            filters:
+                thumbnail: { size: [1127, 300], mode: outbound }
+        skynettechnologies_sylius_allinoneaccessibility_plugin_mobile_image:
+            data_loader: allinoneaccessibility_image
+            filters:
+                thumbnail: { size: [540, 146], mode: outbound }
