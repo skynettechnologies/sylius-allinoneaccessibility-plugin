@@ -1,65 +1,189 @@
-<p align="center">
-    <a href="https://skynettechnologies.com.ar/" target="_blank" title="Skynettechnologies">
-        <img src="https://github.com/skynettechnologies/SyliusAllinOneAccessibilityPlugin/blob/master/sylius-allinoneaccessibility-plugin.png" alt="Sylius AllinOneAccessibility Plugin" />
-    </a>
-    <br />
-    <a href="https://packagist.org/packages/skynettechnologies/sylius-allinoneaccessibility-plugin" title="License" target="_blank">
-        <img src="https://img.shields.io/packagist/l/skynettechnologies/sylius-allinoneaccessibility-plugin.svg" />
-    </a>
-    <a href="https://packagist.org/packages/skynettechnologies/sylius-allinoneaccessibility-plugin" title="Version" target="_blank">
-        <img src="https://img.shields.io/packagist/v/skynettechnologies/sylius-allinoneaccessibility-plugin.svg" />
-    </a>
-    <a href="https://github.com/skynettechnologies/SyliusAllinOneAccessibilityPlugin/actions" title="Build Status" target="_blank">
-        <img src="https://img.shields.io/github/workflow/status/skynettechnologies/SyliusAllinOneAccessibilityPlugin/Build" />
-    </a>
-    <a href="https://scrutinizer-ci.com/g/skynettechnologies/SyliusAllinOneAccessibilityPlugin/" title="Scrutinizer" target="_blank">
-        <img src="https://img.shields.io/scrutinizer/g/skynettechnologies/SyliusAllinOneAccessibilityPlugin.svg" />
-    </a>
-    <a href="https://packagist.org/packages/skynettechnologies/sylius-allinoneaccessibility-plugin" title="Total Downloads" target="_blank">
-        <img src="https://poser.pugx.org/skynettechnologies/sylius-allinoneaccessibility-plugin/downloads" />
-    </a>
-    <a href="https://sylius-devs.slack.com" title="Slack" target="_blank">
-        <img src="https://img.shields.io/badge/community%20chat-slack-FF1493.svg" />
-    </a>
-    <a href="https://skynettechnologies.io/contact?utm_source=github&utm_medium=referral&utm_campaign=plugins_allinoneaccessibility" title="Support" target="_blank">
-        <img src="https://img.shields.io/badge/support-contact%20author-blue" />
-    </a>
-</p>
-<p align="center"><a href="https://sylius.com/partners/skynettechnologies/" target="_blank"><img src="https://github.com/skynettechnologies/SyliusAllinOneAccessibilityPlugin/blob/master/badge-partner-by-sylius.png" width="140"></a></p>
+# All in One Accessibility: Sylius Extension
 
-## Description
+[All in One Accessibility](https://www.skynettechnologies.com/all-in-one-accessibility) extension improves Sylius website ADA compliance and browser experience for ADA, WCAG 2.1 & 2.2, Section 508, Australian DDA, European EAA EN 301 549, UK Equality Act (EA), Israeli Standard 5568, California Unruh, Ontario AODA, Canada ACA, German BITV, France RGAA, Brazilian Inclusion Law (LBI 13.146/2015), Spain UNE 139803:2012, JIS X 8341 (Japan), Italian Stanca Act and Switzerland DDA Standards.
 
-This is a Sylius Plugin that add allinoneaccessibility to your store. The allinoneaccessibilitys are fully customizable by the admin.
+It uses the accessibility interface which handles UI and design related adjustments. All in One Accessibility app enhances your Sylius website accessibility to people with hearing or vision impairments, motor impaired, color blind, dyslexia, cognitive & learning impairments, seizure and epileptic, and ADHD problems.
 
-Features:
+## Features
+#### Skip Links
+- Skip to Menu
+- Skip to Footer
+- Skip to Navigation
+- Open Accessibility Toolbar
 
-* Templates: Show all images or by taxon.
+#### Content Adjustments
+- Content Scaling
+- Readable Fonts
+- Highlight Title
+- Highlight Links
+- Text Magnifier
+- Adjust Font Sizing
+- Adjust Line Height
+- Adjust Letter Spacing
+- Align Center
+- Align Left
+- Align Right
 
-* Sliders: Provides sliders for the images ([Swiper](https://github.com/nolimits4web/swiper), [Glide](https://github.com/glidejs/glide), [SliderPro](https://github.com/bqworks/slider-pro)) or choose your own library.
+#### Color and Contrast Adjustments
+- High Contrast
 
-Support Sylius version 1.10+.
+#### Orientation Adjustments
+- Hide Images (Text Only)
+- Miscellaneous
+- Accessibility Statement
+- Dynamic Application Color
+- Choose Application Trigger Button Position
+- Choose Application Position
+- Multi Language
+
+#### Supports 140 languages
+- English
+- Italian
+- French
+- German
+- Russian
+- Spanish
+- Finnish
+- Portuguese
+- Arab
+- Polish
+- Hungarian
+- Slovak
+- Japanese
+- Turkish
+- Greek
+- Latin
+- Hebrew
+- Bulgarian
+- Catalan
+- Chinese
+- Czech
+- Danish
+- Dutch
+- Hindi
+- Indonesian
+- Korean
+- Malay
+- Norwegian
+- Romanian
+- Slovenian
+- Swedish
+- Thai
+- Ukrainian
+- Vietnamese
+- Bengali
+- Lithuanian
+- Sinhala
+- Amharic
+- Hmong
+- Burmese
+- Latvian
+- Estonian
+- Serbian
+- Portuguese (Brazil)
+- Chinese Traditional
+- Croatian
+- Georgian
+- Hawaiian
+- Welsh
+- Cebuano
+- Samoan
+- Haitian Creole
+- Faroese
+- Montenegrin
+- Australian
+- Azeri
+- Basque
+- Canada
+- Filipino
+- Galician
+- Norwegian
+- Persian
+- Punjabi
+- Spanish (Mexico)
+- United Kingdom
+
+
+## Installation
+
+1. Run `composer require skynettechnologies/sylius-allinoneaccessibility-plugin`
+
+
+2. Enable the plugin in bundles.php
+
+```php
+<?php
+// config/bundles.php
+
+return [
+    // ...
+    Skynettechnologies\SyliusAllinOneAccessibilityPlugin\SkynettechnologiesSyliusAllinOneAccessibilityPlugin::class => ['all' => true],
+];
+```
+
+3. Import the plugin configurations
+
+```yml
+# config/packages/_sylius.yaml
+imports:
+    # ...
+    - { resource: "@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/Resources/config/config.yaml" }
+```
+
+4. Add the shop and admin routes
+
+```yml
+# config/routes.yaml
+skynettechnologies_sylius_allinoneaccessibility_plugin_admin:
+    resource: "@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/Resources/config/routing/admin.yaml"
+    prefix: /admin
+
+skynettechnologies_sylius_allinoneaccessibility_plugin_shop:
+    resource: "@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/Resources/config/routing/shop.yaml"
+    prefix: /{_locale}/allinoneaccessibility
+    requirements:
+        _locale: ^[A-Za-z]{2,4}(_([A-Za-z]{4}|[0-9]{3}))?(_([A-Za-z]{2}|[0-9]{3}))?$
+```
+
+5. Create allinoneaccessibility folder: run `mkdir public/media/allinoneaccessibility-image -p` and insert a .gitkeep file in that folder
+
+
+6. Finish the installation updating the database schema and installing assets
+
+```
+php bin/console doctrine:migrations:migrate
+php bin/console sylius:theme:assets:install
+php bin/console cache:clear
+```
+
+7. Build and run the package using below command
+
+```
+symfony server:start
+```
 
 ## Screenshots
 
-<img src="https://github.com/skynettechnologies/SyliusAllinOneAccessibilityPlugin/blob/master/screenshot_1.png" alt="AllinOneAccessibility admin" width="650">
-<img src="https://github.com/skynettechnologies/SyliusAllinOneAccessibilityPlugin/blob/master/screenshot_2.png" alt="AllinOneAccessibility shop homepage" width="650">
-<img src="https://github.com/skynettechnologies/SyliusAllinOneAccessibilityPlugin/blob/master/screenshot_3.png" alt="AllinOneAccessibility shop taxon" width="650">
+![App Screenshot](https://www.skynettechnologies.com/sites/default/files/screenshot3.png)
 
-## Demo
+![App Screenshot](https://www.skynettechnologies.com/sites/default/files/screenshot1.png)
 
-You can see this plugin in action in our Sylius Demo application.
+![App Screenshot](https://www.skynettechnologies.com/sites/default/files/screenshot2.png)
 
-- Frontend: [sylius-demo.skynettechnologies.com.ar](https://sylius-demo.skynettechnologies.com.ar).
-- Administration: [sylius-demo.skynettechnologies.com.ar/admin](https://sylius-demo.skynettechnologies.com.ar/admin) with `skynettechnologies: skynettechnologies` credentials.
+![App Screenshot](https://www.skynettechnologies.com/sites/default/files/screenshot4.png)
+
+## Video
+
+[![All in One Accessibility](https://img.youtube.com/vi/czwC0PKIqkc/0.jpg)](https://www.youtube.com/watch?v=czwC0PKIqkc)
+
+## Acknowledgements
+
+ - [Sylius All in One Accessibility](https://www.skynettechnologies.com/bagisto-accessibility-widget)
+ - [Sylius All in One Accessibility Extension installation steps blog](https://www.skynettechnologies.com/blog/bagisto-accessibility-menu-widget-installation)
 
 ## Documentation
 
-- [Installation](doc/installation.md)
-- [Usage](doc/usage.md)
-- [Fixtures](doc/fixtures.md)
-- [Customization](doc/customization.md)
-- [Tests](doc/tests.md)
+[All in One Accessibility - User Guide](https://www.dropbox.com/s/de41n4xm9zjwxix/All-in-One-Accessibility-PRO-App-Usage-and-Functionality.pdf?dl=0)
 
-## Credits
-
-This plugin is maintained by <a href="https://skynettechnologies.io">Skynettechnologies</a>. Want us to help you with this plugin or any Sylius project? Contact us on <a href="mailto:team@skynettechnologies.com.ar">team@skynettechnologies.com.ar</a>.
+## Support
+For any kind of queries/support please Email us at [Skynet Technologies Support](mailto:hello@skynettechnologies.com)
