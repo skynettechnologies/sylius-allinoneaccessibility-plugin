@@ -178,8 +178,8 @@ symfony server:start
 
 ## Acknowledgements
 
- - [Sylius All in One Accessibility](https://www.skynettechnologies.com/bagisto-accessibility-widget)
- - [Sylius All in One Accessibility Extension installation steps blog](https://www.skynettechnologies.com/blog/bagisto-accessibility-menu-widget-installation)
+ - [Sylius All in One Accessibility](https://www.skynettechnologies.com/sylius-website-accessibility)
+ - [Sylius All in One Accessibility Extension installation steps blog](https://www.skynettechnologies.com/blog/sylius-web-accessibility-widget-installation)
 
 ## Documentation
 
