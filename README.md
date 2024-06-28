@@ -16,7 +16,6 @@ Following features can be added as an addon:
 - Live Website Translations
 - VPAT / ACR Report
 - Manual Accessibility Audit
-- Accessibility Monitor
 
 For more details/features, Please visit [All in One Accessibility](https://www.skynettechnologies.com/all-in-one-accessibility).
 
