@@ -12,24 +12,26 @@ use Doctrine\ORM\EntityManagerInterface;
 
 final class AllinOneAccessibilityExtension extends AbstractExtension
 {
-    private ?string $slider;
-
-    public function __construct(
-        ?string $slider
-    ) {
-        $this->slider = $slider;
+    private ?string $slider = 'default';  // Default value for slider
+    public function __construct()
+    {
     }
 
-    public function getFunctions() :array
+    public function getFunctions(): array
     {
         return [
-            new TwigFunction('allinoneaccessibility_slider_name', [$this, 'getAllinOneAccessibilitySliderName'])
+            new TwigFunction('all_in_one_accessibility', [$this, 'renderAccessibilityWidget']),
         ];
     }
 
-    public function getAllinOneAccessibilitySliderName(): string
+    public function renderAccessibilityWidget(): string
     {
-        return $this->slider !== null ? $this->slider : 'default';
+        return '<script>
+            const scriptTag = document.createElement("script");
+            scriptTag.id = "aioa-adawidget";
+            scriptTag.src = "https://www.skynettechnologies.com/accessibility/js/all-in-one-accessibility-js-widget-minify.js?colorcode=#420083&token=&position=bottom_right";
+            document.head.appendChild(scriptTag);
+        </script>';
     }
 
     public function getName(): string

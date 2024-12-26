@@ -1,5 +1,35 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Importing other configuration files that define services
 imports:
     - { resource: services/event_listener.yaml }
     - { resource: services/fixture.yaml }
     - { resource: services/form.yaml }
     - { resource: services/twig.yaml }
+
+# Define the services for the Sylius AllInOneAccessibility Plugin
+services:
+    # Register the DefaultAdminController and inject necessary services (like HttpClientInterface and DB connection)
+    Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Controller\Admin\DefaultAdminController:
+        arguments:
+            $client: '@Symfony\Contracts\HttpClient\HttpClientInterface'
+            $connection: '@doctrine.dbal.default_connection'  # Default DB connection
+        tags:
+            - { name: controller.service_arguments }
+
+    # Register the AdminMenuListener for the Sylius plugin to handle menu-related events
+    Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Menu\AdminMenuListener:
+        tags:
+            - { name: kernel.event_subscriber }
+
+    # Register the AllinOneAccessibilityExtension for Twig
+    Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Twig\AllinOneAccessibilityExtension:
+        tags: [ 'twig.extension' ]
+    # Register all services under the `App` namespace, except for the ones explicitly excluded
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'

@@ -1,0 +1,12 @@
+# src/Skynettechnologies/SyliusAllinOneAccessibilityPlugin/Resources/config/routes.yaml
+skynettechnologies_admin:
+    resource: "@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/Controller/"
+    type: annotation
+    prefix: /admin  # You can change the prefix if needed
+    
+sylius_all_in_one_accessibility_plugin.index.admin:
+    path: /admin/allinoneaccessibility/{page}
+    controller: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Controller\Admin\DefaultAdminController::adminAction
+    defaults:
+        page: 1
+    methods: [GET]

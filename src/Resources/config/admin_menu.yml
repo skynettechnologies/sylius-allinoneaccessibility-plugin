@@ -1,0 +1,12 @@
+sylius_admin:
+    menu:
+        main:
+            children:
+                all_in_one_accessibility:
+                    label: 'All in One Accessibility®'
+                    route: 'sylius_all_in_one_accessibility_plugin.index.admin'
+                    icon: '/bundles/skynettechnologiessyliusallinoneaccessibilityplugin/images/icons/accessibility.svg'
+                    children:
+                        some_submodule:
+                            label: 'Submodule'
+                            route: 'sylius_all_in_one_accessibility_plugin.submodule.admin'

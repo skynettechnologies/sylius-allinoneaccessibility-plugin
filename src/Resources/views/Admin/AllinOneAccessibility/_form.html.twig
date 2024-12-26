@@ -1,60 +1,658 @@
-<div id="domain_button" style="display: none">
-    <h5 style="color: #aa1111">It appears that you have already registered! Please click on the "Manage Subscription" button to renew your subscription.<br> Once your plan is renewed, please refresh the page.</h5>
-    <div style="text-align: left; width:100%; padding-bottom: 10px;"><a target="_blank" id="manage_subscription" class="aioa-cancel-button" href="">Manage Subscription</a></div>
-</div>
-<div id="setting-div" style="width:80%; margin-top: 50px; padding-bottom: 10px;justify-content:space-between; display: none">
-    <h3  style=" width: 50%;">Widget Preferences:</h3>
-    <div><a target="_blank" class="aioa-cancel-button" id="aioa_subscriptionsd" href="">Manage Subscription</a></div>
-    <iframe id="setting-iframe" src="" height="1100px;" width="100%" style="border: none;display: none"></iframe>
-</div>
-<iframe id="aioa-iframe" src="" height="1100px;" width="100%" style="border: none;display: none"></iframe>
+{% extends '@SyliusAdmin/layout.html.twig' %}
 
-{% block javascripts %}
-     <script>
-        var current_domain = window.location.hostname;
-        const myHeaders = new Headers();
-        myHeaders.append("Cookie", "XSRF-TOKEN=eyJpdiI6IlNkQWxSVTJ0V1RyRlBUVTVnV21JNlE9PSIsInZhbHVlIjoib0o1clU2MGpMVkpIMkNiLzBNeWJkSXhrUjFpMm1HTWp4R2lld1pYa2pWMGk3emFzck5XR1ZqUFRtdmt2QTVzdzAvK1dsNGl2ckJVYWkvUHE0S2svUExLWTlNS05nNmVYZVV1MUpnVEg1UHdscSttOFJpaGJkc3YwR0VuUmRlT00iLCJtYWMiOiIzYTNiZmI3ZmY3YjkyMDQ5M2UwN2NhNmQzNmE5NTNhYTM2YThkZjdiNWU0NjcwMzJkZjU4MTIzN2ZiN2NlMTFlIiwidGFnIjoiIn0%3D; all_in_one_accessibility_session=eyJpdiI6IjU1eWJpSm1nSFk5WlRubFhuNVRRa0E9PSIsInZhbHVlIjoiZDY1eStYLzhpK3BXLzduRFA3RGUvYVdCa0ZGSnJ1dVVCOHAzNkU0TmZJb2NJWDVHa0sxQ3RXdjdkZEVlTjc4bFF5d1VPY3RVWVRuSG5VekFrOC9PbWJ5NTVtWE5SOGJpVWNURXZIeHJNTE1uT0ZPZ1JDbXpYS3NHNU0zYkRsNFkiLCJtYWMiOiIzMzFhOTIwMGQwN2JiODBlMDkzYzlhOTRhNDg0NWRhYzMzYmMyOGI1N2JhMDAyYTRlZGMxOTYyNDZiYWI4NjlmIiwidGFnIjoiIn0%3D");
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/skynettechnologiessyliusallinoneaccessibilityplugin/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/skynettechnologiessyliusallinoneaccessibilityplugin/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/skynettechnologiessyliusallinoneaccessibilityplugin/css/allinoneaccessibility.css') }}">
+    <style>
+        /* Loader styles */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .get-strated-btn,
+        .get-strated-btn:hover {
+            background-color: #2855d3;
+            color: white;
+            padding: 5px 5px;
+            text-decoration: none;
+        }
 
-        const formdata = new FormData();
-        formdata.append("domain", current_domain);
-        const requestOptions = {
-          method: "POST",
-          headers: myHeaders,
-          body: formdata,
-          redirect: "follow"
-        };
-        fetch("https://ada.skynettechnologies.us/check-website", requestOptions)
-          .then((response) => response.json())
-          .then(function(response) {
-              var get_settinglink = response.settinglink;
-              var manage_domain = response.manage_domain;
-              console.log(response.status,"check status");
-              if(response.status == 3) {
-                  var show_button = document.getElementById("manage_subscription");
-                  console.log(show_button);
-                  document.getElementById("aioa-iframe").style.display = 'none';
-                  document.getElementById("domain_button").style.display = 'block';
-                  document.getElementById("setting-div").style.display = 'none';
-                  show_button.href = get_settinglink;
-              }
-              else if(response.status > 0 && response.status < 3) {
-                  var show_button_manage = document.getElementById("aioa_subscriptionsd");
-                  var iframe = document.getElementById("setting-iframe");
-                  document.getElementById("aioa-iframe").style.display = 'none';
-                  document.getElementById("domain_button").style.display = 'none';
-                  document.getElementById("setting-div").style.display = 'block';
-                  document.getElementById("setting-iframe").style.display = 'block';
-                  iframe.src = get_settinglink;
-                  show_button_manage.href = manage_domain;
-              }else{
-                var iframe_id = document.getElementById("aioa-iframe");
-                  document.getElementById("aioa-iframe").style.display = 'block';
-                  document.getElementById("domain_button").style.display = 'none';
-                  document.getElementById("setting-div").style.display = 'none';
-                  iframe_id.src = "https://ada.skynettechnologies.us/trial-subscription?isframe=true&website=" + current_domain + "&developer_mode=true";
-          }})
-            .catch((error) => console.error(error));
-     </script>
+        .aioa-cancel-button {
+            text-decoration: none;
+            display: inline-block;
+            vertical-align: middle;
+            border: 2px solid #dd2755;
+            border-radius: 4px 4px 4px 4px;
+            background-color: #ea2362;
+            box-shadow: 0px 0px 2px 0px #333333;
+            color: #ffffff;
+            text-align: center;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .aioa-cancel-button:hover {
+            border-color: #e21f4a;
+            background-color: white;
+            box-shadow: 0px 0px 2px 0px #333333;
+        }
+
+        .aioa-cancel-button:hover .mb-text {
+            color: #e82757;
+        }
+
+        .icon-type-wrapper .row label,
+        .icon-size-wrapper .row label {
+            background: #211f1f;
+        }
+
+        .icon-type-wrapper .row {
+            flex-wrap: wrap;
+        }
+
+        .horizontal-container,
+        .vertical-container {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 20px;
+            color: black;
+
+        }
+
+        .horizontal-container div,
+        .vertical-container div {
+            min-width: 150px;
+            margin-top: 0;
+        }
+
+        .horizontal-container label,
+        .vertical-container label {
+            display: block !important;
+        }
+
+        .horizontal-container select,
+        .horizontal-container input,
+        .vertical-container select,
+        .vertical-container input {
+            width: 100%;
+        }
+
+        .horizontal-container label,
+        .horizontal-container input,
+        .horizontal-container select .vertical-container label,
+        .vertical-container input,
+        .vertical-container select {
+            display: block;
+        }
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-content img {
+            max-width: 510px; /* Adjust image size */
+            height: auto;
+        }
+    </style>
 {% endblock %}
+{% block content %}
+    <div class="panel panel-default aioa-settings-panel">
+        <div class="panel-body">
+            <form method="POST" enctype="multipart/form-data" id="form-module">
+                <input type="hidden" id="settings-isvalid_key" name="isvalid_key" value="">
+                <input type="hidden" id="id" name="id" value="{{ id }}">
+                <input type="hidden" id="user_name" name="user_name" value="{{ user_name }}">
+                <input type="hidden" id="email" name="email" value="{{ email }}">
+                <div class="header-content">
+                    <h1 class="mb-0 text-black">
+                        <img src="https://ada.skynettechnologies.us/public/trial-assets/images/all-in-one-accessibility-logo.svg" alt="All in One Accessibility - Skynet Technologies">
+                    </h1>
+                </div>
+                <div class="form-text" style="font-size: 17px;">
+                    <B>NOTE: Currently, All in One Accessibility is dedicated to enhancing accessibility
+                        specifically for websites and online stores.</B>
+                </div>
+                <div class="form-group row mt-0" style="margin-bottom: auto;">
+                    <div class="col-sm-12">
+                        <div style="margin-top: 5px;">
+                            <p id="license_key_msg" class="">
+                                Please <a href="https://ada.skynettechnologies.us/trial-subscription?website={{ domain }}" target="_blank">Upgrade</a>
+                                to paid version of All in One Accessibility® Pro.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-3 row " id="colorcode_html" style="margin-top: 30px;">
+                        <h3 class="col-sm-3 col-form-label">Hex color code:</h3>
+                        <div class="col-sm-9">
+                            <input type="text" name="colorcode"  style="height:auto" class="form-control" id="color" value="{{ color }}" />
+                            <div class="form-text">You can customize the ADA Widget color. For example: FF5733</div>
+                        </div>
+                </div>
 
+                <div class="icon-custom-position-wrapper mb-3 row">
+                    <div class="col-sm-12 mb-4">
+                        <label class="custom-switcher">
+                          <span class="custom-switcher_right">
+                            <input type="checkbox" id="custom-position-switcher" class="custom-switcher_inp_2"
+                                   value="1" />
+                            <span class="custom-switcher_body" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                  title="Toggle to override <Top Left> position" data-bs-custom-class="switcher-tooltip"></span>
+                            <span class="custom-switcher_label">Enable precise accessibility widget icon position:</span>
+                          </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-3 row widget-position" id="position_html">
+                    <div class="col-sm-12">
+                        <fieldset class="edit-is-widget-custom-position-0">
+                            <label for="color" style="font-weight: 700">Where would you like to place the accessibility icon on your site?</label>
+                            <div class="icon-position-radios three-col">
+                                <div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-position form-item-position">
+                                    <input type="radio" name="position" id="aioaPositionTL" class="aioa-position" value="top_left" {% if position == 'top_left' %} checked {% endif %}>
+                                    <label for="aioaPositionTL" style="font-weight:normal !important">Top Left</label>
+                                </div>
+                                <div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-position form-item-position">
+                                    <input type="radio" name="position" id="aioaPositionTC" class="aioa-position" value="top_center" {% if position == 'top_center' %} checked {% endif %}>
+                                    <label for="aioaPositionTC" style="font-weight:normal !important">Top Center</label>
+                                </div>
+                                <div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-position form-item-position">
+                                    <input type="radio" name="position" id="aioaPositionTR" class="aioa-position" value="top_right" {% if position == 'top_right' %} checked {% endif %}>
+                                    <label for="aioaPositionTR" style="font-weight:normal !important">Top Right</label>
+                                </div>
+                                <div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-position form-item-position">
+                                    <input type="radio" name="position" id="aioaPositionBL" class="aioa-position" value="bottom_left" {% if position == 'bottom_left' %} checked {% endif %}>
+                                    <label for="aioaPositionBL" style="font-weight:normal !important">Bottom Left</label>
+                                </div>
+                                <div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-position form-item-position">
+                                    <input type="radio" name="position" id="aioaPositionBR" class="aioa-position" value="bottom_right" {% if position == 'bottom_right' %} checked {% endif %}>
+                                    <label for="aioaPositionBR" style="font-weight:normal !important">Bottom Right</label>
+                                </div>
+                                <div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-position form-item-position">
+                                    <input type="radio" name="position" id="aioaPositionBC" class="aioa-position" value="bottom_center" {% if position == 'bottom_center' %} checked {% endif %}>
+                                    <label for="aioaPositionBC" style="font-weight:normal !important">Bottom Center</label>
+                                </div>
+                                <div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-position form-item-position">
+                                    <input type="radio" name="position" id="aioaPositionML" class="aioa-position" value="middle_left" {% if position == 'middle_left' %} checked {% endif %}>
+                                    <label for="aioaPositionML" style="font-weight:normal !important">Middle Left</label>
+                                </div>
+                                <div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-position form-item-position">
+                                    <input type="radio" name="position" id="aioaPositionMR" class="aioa-position" value="middle_right" {% if position == 'middle_right' %} checked {% endif %}>
+                                    <label for="aioaPositionMR" style="font-weight:normal !important">Middle Right</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <fieldset class="edit-is-widget-custom-position-1 hide">
+                        <legend>Custom Position Options:</legend>
+                        <div class="fieldset-wrapper">
+                            <div class="horizontal-container js-form-wrapper form-wrapper" data-drupal-selector="edit-horizontal" id="edit-horizontal" style="display: flex">
+                                <div class="js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-widget-position-left form-item--widget-position-left">
+                                    <label for="edit-widget-position-left" class="form-label form-item__label">Horizontal (px)</label>
+                                    <input placeholder="Enter pixels" data-drupal-selector="edit-widget-position-left" type="number"
+                                           id="widget_position_left" name="aioa_custom_position_horizontal" value="{{ widget_position_left }}"
+                                           size="10" maxlength="128" class="form-control form-element form-element--type-text form-element--api-textfield"
+                                           oninput="this.value = Math.min(Math.max(this.value, 0), 250)">
+                                </div>
+                                <div class="js-form-item form-item js-form-type-select form-type--select js-form-item-widget-position-top form-item--widget-position-top">
+                                    <label for="edit-widget-position-top" class="form-label form-item__label">Position</label>
+                                    <select data-drupal-selector="edit-widget-position-top" id="widget_position_top" name="aioa_custom_position_horizontal_type" class="form-select form-element form-element--type-select select-widget_position_top">
+                                        <option value="left" {% if widget_position_top == "left" %} selected {% endif %}>to the Left</option>
+                                        <option value="right" {% if widget_position_top == "right" %} selected {% endif %}>to the Right</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="vertical-container js-form-wrapper form-wrapper" data-drupal-selector="edit-vertical" id="edit-vertical" style="display: flex">
+                                <div class="js-form-item form-item js-form-type-textfield form-type--textfield js-form-item-widget-position-right form-item--widget-position-right">
+                                    <label for="edit-widget-position-right" class="form-label form-item__label">Vertical (px)</label>
+                                    <input placeholder="Enter pixels" data-drupal-selector="edit-widget-position-right" type="number"
+                                           id="widget_position_right" name="aioa_custom_position_vertical" value="{{ widget_position_right }}"
+                                           size="10" maxlength="128" class="form-control form-element form-element--type-text form-element--api-textfield"
+                                           oninput="this.value = Math.min(Math.max(this.value, 0), 250)">
+                                </div>
+                                <div class="js-form-item form-item js-form-type-select form-type--select js-form-item-widget-position-bottom form-item--widget-position-bottom">
+                                    <label for="edit-widget-position-bottom" class="form-label form-item__label">Position</label>
+                                    <select data-drupal-selector="edit-widget-position-bottom" id="widget_position_bottom" name="aioa_custom_position_vertical_type" class="form-select form-element form-element--type-select setting-widget_position_bottom">
+                                        <option value="top" {% if widget_position_bottom == "top" %} selected {% endif %}>to the Top</option>
+                                        <option value="bottom" {% if widget_position_bottom == "bottom" %} selected {% endif %}>to the Bottom</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="edit-widget-size--wrapper--description" data-drupal-field-elements="description" class="fieldset__description mt-1">
+                                0 - 250px are permitted values.
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="form-group">
+                    <div class="form-radios">
+                        <h3>Select Widget Size:</h3>
+                        <div class="form-radio-item">
+                            <input type="radio" id="edit-widget-size-regularsize" name="widget_size" value="0"
+                                   class="form-radio form-boolean form-boolean--type-radio select-widget-size"
+                                {% if widget_size == '0' %} checked {% endif %}>
+                            <label for="edit-widget-size-regularsize" class="form-item__label option">Regular Size</label>
+                        </div>
+                        <div class="form-radio-item">
+                            <input type="radio" id="edit-widget-size-oversize" name="widget_size" value="1"
+                                   class="form-radio form-boolean form-boolean--type-radio select-widget-size"
+                                {% if widget_size == '1' %} checked {% endif %}>
+                            <label for="edit-widget-size-oversize" class="form-item__label option">Oversize</label>
+                        </div>
+                        <div id="edit-widget-size--wrapper--description" data-drupal-field-elements="description" class="fieldset__description mt-1">
+                            It only works on desktop view.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row icon common-class aioa-icon-type mb-0">
+                    <h3>Select icon type:</h3>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-1" name="icon_type" value="aioa-icon-type-1"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-1' %} checked {% endif %}>
+                                <label for="edit-type-1" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-1.svg"
+                                         width="65" height="65" id="aioa-icon-type-1-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 1</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-2" name="icon_type" value="aioa-icon-type-2"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-2' %} checked {% endif %}>
+                                <label for="edit-type-2" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-2.svg"
+                                         width="65" height="65" id="aioa-icon-type-2-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 2</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-3" name="icon_type" value="aioa-icon-type-3"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-3' %} checked  {% endif %}>
+                                <label for="edit-type-3" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-3.svg"
+                                         width="65" height="65" id="aioa-icon-type-3-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 3</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-4" name="icon_type" value="aioa-icon-type-4"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-4' %} checked  {% endif %}>
+                                <label for="edit-type-4" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-4.svg"
+                                         width="65" height="65" id="aioa-icon-type-4-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 4</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-5" name="icon_type" value="aioa-icon-type-5"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-5' %} checked  {% endif %}>
+                                <label for="edit-type-5" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-5.svg"
+                                         width="65" height="65" id="aioa-icon-type-5-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 5</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-6" name="icon_type" value="aioa-icon-type-6"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-6' %} checked  {% endif %}>
+                                <label for="edit-type-6" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-6.svg"
+                                         width="65" height="65" id="aioa-icon-type-6-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 6</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-7" name="icon_type" value="aioa-icon-type-7"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-7' %} checked  {% endif %}>
+                                <label for="edit-type-7" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-7.svg"
+                                         width="65" height="65" id="aioa-icon-type-7-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 7</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-8" name="icon_type" value="aioa-icon-type-8"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-8' %} checked  {% endif %}>
+                                <label for="edit-type-8" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-8.svg"
+                                         width="65" height="65" id="aioa-icon-type-8-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 8</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-9" name="icon_type" value="aioa-icon-type-9"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-9' %} checked  {% endif %}>
+                                <label for="edit-type-9" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-9.svg"
+                                         width="65" height="65" id="aioa-icon-type-9-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 9</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-10" name="icon_type" value="aioa-icon-type-10"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-10' %} checked  {% endif %}>
+                                <label for="edit-type-10" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-10.svg"
+                                         width="65" height="65" id="aioa-icon-type-10-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 10</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-11" name="icon_type" value="aioa-icon-type-11"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-11' %} checked  {% endif %}>
+                                <label for="edit-type-11" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-11.svg"
+                                         width="65" height="65" id="aioa-icon-type-11-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 11</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-12" name="icon_type" value="aioa-icon-type-12"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-12' %} checked  {% endif %}>
+                                <label for="edit-type-12" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-12.svg"
+                                         width="65" height="65" id="aioa-icon-type-12-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 12</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-13" name="icon_type" value="aioa-icon-type-13"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-13' %} checked  {% endif %}>
+                                <label for="edit-type-13" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-13.svg"
+                                         width="65" height="65" id="aioa-icon-type-13-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 13</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-14" name="icon_type" value="aioa-icon-type-14"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-14' %} checked  {% endif %}>
+                                <label for="edit-type-14" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-14.svg"
+                                         width="65" height="65" id="aioa-icon-type-14-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 14</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-15" name="icon_type" value="aioa-icon-type-15"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-15' %} checked  {% endif %}>
+                                <label for="edit-type-15" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-15.svg"
+                                         width="65" height="65" id="aioa-icon-type-15-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 15</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-16" name="icon_type" value="aioa-icon-type-16"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-16' %} checked  {% endif %}>
+                                <label for="edit-type-16" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-16.svg"
+                                         width="65" height="65" id="aioa-icon-type-16-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 16</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-17" name="icon_type" value="aioa-icon-type-17"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-17' %} checked  {% endif %}>
+                                <label for="edit-type-17" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-17.svg"
+                                         width="65" height="65" id="aioa-icon-type-17-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 17</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-18" name="icon_type" value="aioa-icon-type-18"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-18' %} checked  {% endif %}>
+                                <label for="edit-type-18" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-18.svg"
+                                         width="65" height="65" id="aioa-icon-type-18-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 18</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-19" name="icon_type" value="aioa-icon-type-19"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-19' %} checked  {% endif %}>
+                                <label for="edit-type-19" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-19.svg"
+                                         width="65" height="65" id="aioa-icon-type-19-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 19</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-20" name="icon_type" value="aioa-icon-type-20"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-20' %} checked  {% endif %}>
+                                <label for="edit-type-20" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-20.svg"
+                                         width="65" height="65" id="aioa-icon-type-20-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 20</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-21" name="icon_type" value="aioa-icon-type-21"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-21' %} checked  {% endif %}>
+                                <label for="edit-type-21" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-21.svg"
+                                         width="65" height="65" id="aioa-icon-type-21-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 21</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-22" name="icon_type" value="aioa-icon-type-22"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-22' %} checked  {% endif %}>
+                                <label for="edit-type-22" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-22.svg"
+                                         width="65" height="65" id="aioa-icon-type-22-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 22</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-23" name="icon_type" value="aioa-icon-type-23"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-23' %} checked  {% endif %}>
+                                <label for="edit-type-23" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-23.svg"
+                                         width="65" height="65" id="aioa-icon-type-23-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 23</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-24" name="icon_type" value="aioa-icon-type-24"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-24' %} checked  {% endif %}>
+                                <label for="edit-type-24" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-24.svg"
+                                         width="65" height="65" id="aioa-icon-type-24-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 24</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-25" name="icon_type" value="aioa-icon-type-25"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-25' %} checked  {% endif %}>
+                                <label for="edit-type-25" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-25.svg"
+                                         width="65" height="65" id="aioa-icon-type-25-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 25</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-26" name="icon_type" value="aioa-icon-type-26"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-26' %} checked  {% endif %}>
+                                <label for="edit-type-26" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-26.svg"
+                                         width="65" height="65" id="aioa-icon-type-26-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 26</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-27" name="icon_type" value="aioa-icon-type-27"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-27' %} checked  {% endif %}>
+                                <label for="edit-type-27" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-27.svg"
+                                         width="65" height="65" id="aioa-icon-type-27-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 27</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-28" name="icon_type" value="aioa-icon-type-28"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-28' %} checked  {% endif %}>
+                                <label for="edit-type-28" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-28.svg"
+                                         width="65" height="65" id="aioa-icon-type-28-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 28</span>
+                                </label>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <input type="radio" id="edit-type-29" name="icon_type" value="aioa-icon-type-29"
+                                       class="input-hidden icon_type" {% if icon_type=='aioa-icon-type-29' %} checked  {% endif %}>
+                                <label for="edit-type-29" class="icon-label">
+                                    <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-29.svg"
+                                         width="65" height="65" id="aioa-icon-type-29-img" style="margin: auto" />
+                                    <span class="visually-hidden">Type 29</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Custom Widget Icon Size for Desktop (px) -->
+                <div class="icon-custom-size-wrapper mb-3 row">
+                    <div class="col-sm-12">
+                        <label class="custom-switcher">
+                            <span class="custom-switcher_right">
+                                <input type="checkbox" id="custom-size-switcher" class="custom-switcher_inp_2" value="1" />
+                                <span class="custom-switcher_body" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                      title="Toggle to override selected size" data-bs-custom-class="switcher-tooltip">
+                                </span>
+                                <span class="custom-switcher_label">Enable icon custom size:</span>
+                            </span>
+                        </label>
+                        <div class="custom-size-controls hide">
+                            <div class="col-auto controls ms-0">
+                                <label for="exact-icon-size" class="form-label">Select exact icon size:</label>
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control" style="height:auto" id="widget_icon_size_custom"
+                                           name="widget_icon_size_custom" oninput="this.value = Math.min(Math.max(this.value, 0), 150)"
+                                           value="{% if widget_icon_size_custom %}{{ widget_icon_size_custom }}{% else %}20{% endif %}"
+                                           min="20" max="150" aria-label="Value in pixels" aria-describedby="size-value-input_1" />
+                                    <span class="input-group-text" style="height:auto" id="size-value-input_1">PX</span>
+                                </div>
+                                <div class="description">20 - 150px are permitted values</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row icon common-class aioa-icon-type mb-0 icon-size-wrapper widget-icon row" id="select_icon_size">
+                    <label class="fcol-sm-12 col-form-label">Select icon size for Desktop: </label>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-auto mb-30">
+                                <div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-position form-item-position">
+                                    <input type="radio" id="edit-size-big" name="icon_size" value="aioa-big-icon"
+                                           class="input-hidden aioa-iconsize" {% if icon_size=='aioa-big-icon' %} checked {% endif %}>
+                                    <label for="edit-size-big" class="option">
+                                        <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-1.svg"
+                                             width="75" height="75" style="height: 75px;" class="iconimg"/>
+                                        <span class="visually-hidden">Big</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-position form-item-position">
+                                    <input type="radio" id="edit-size-medium" name="icon_size" value="aioa-medium-icon"
+                                           class="input-hidden aioa-iconsize" {% if icon_size=='aioa-medium-icon' %} checked {% endif %}>
+                                    <label for="edit-size-medium" class="option">
+                                        <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-1.svg"
+                                             width="65" height="65" style="height: 65px;" class="iconimg"/>
+                                        <span class="visually-hidden">Medium</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-position form-item-position">
+                                    <input type="radio" id="edit-size-default" name="icon_size" value="aioa-default-icon"
+                                           class="input-hidden aioa-iconsize" {% if icon_size=='aioa-default-icon' %} checked {% endif %}>
+                                    <label for="edit-size-default" class="option">
+                                        <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-1.svg"
+                                             width="55" height="55" style="height: 55px;" class="iconimg"/>
+                                        <span class="visually-hidden">Default</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-position form-item-position">
+                                    <input type="radio" id="edit-size-small" name="icon_size" value="aioa-small-icon"
+                                           class="input-hidden aioa-iconsize" {% if icon_size=='aioa-small-icon' %} checked {% endif %}>
+                                    <label for="edit-size-small" class="option">
+                                        <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-1.svg"
+                                             width="45" height="45" style="height: 45px;" class="iconimg"/>
+                                        <span class="visually-hidden">Small</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-auto mb-30">
+                                <div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-position form-item-position">
+                                    <input type="radio" id="edit-size-extra-small" name="icon_size" value="aioa-extra-small-icon"
+                                           class="input-hidden aioa-iconsize" {% if icon_size=='aioa-extra-small-icon' %} checked {% endif %}>
+                                    <label for="edit-size-extra-small" class="option">
+                                        <img src="https://www.skynettechnologies.com/sites/default/files/aioa-icon-type-1.svg"
+                                             width="35" height="35" style="height: 35px;" class="iconimg"/>
+                                        <span class="visually-hidden">Extra Small</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12" align="center">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('bundles/skynettechnologiessyliusallinoneaccessibilityplugin/js/allinoneaccessibility.js') }}"></script>
+    <script>
+        $("#custom-position-switcher").click(function () {
+            $(".edit-is-widget-custom-position-1").toggleClass("hide");
+            $(".edit-is-widget-custom-position-0").toggleClass("hide");
+        });
+        $("#custom-size-switcher").click(function () {
+            $(".custom-size-controls").toggleClass("hide");
+            $(".widget-icon").toggleClass("hide");
+        });
+    </script>
+{% endblock %}
 

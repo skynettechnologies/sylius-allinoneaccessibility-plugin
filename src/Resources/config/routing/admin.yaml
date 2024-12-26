@@ -1,2 +1,9 @@
 skynettechnologies_sylius_allinoneaccessibility_plugin_admin_allinoneaccessibility:
     resource: admin/allinoneaccessibility.yaml
+
+skynettechnologies_sylius_allinoneaccessibility_plugin_admin_allinoneaccessibility_create:
+    path: /index/{page}
+    controller: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Controller\Admin\DefaultAdminController::adminAction
+    defaults:
+        page: 1
+    methods: [GET]
