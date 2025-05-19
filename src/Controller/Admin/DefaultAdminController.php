@@ -133,7 +133,7 @@ class DefaultAdminController extends AbstractController
         }
         // Example: Generating a URL for the route using Symfony's router
         $url = $this->generateUrl('skynettechnologies_sylius_allinoneaccessibility_plugin_admin_allinoneaccessibility_create', ['page' => $page]);
-        return $this->render('@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/admin/AllinOneAccessibility/_form.html.twig', [
+        return $this->render('@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/Admin/AllinOneAccessibility/_form.html.twig', [
             'url' => $url,  // Pass the generated URL to the template
             'page' => $page,
             'domain' => $domain,
