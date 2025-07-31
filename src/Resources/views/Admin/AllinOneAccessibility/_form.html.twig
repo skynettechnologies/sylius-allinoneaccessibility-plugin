@@ -158,7 +158,7 @@
                         <label class="custom-switcher">
                           <span class="custom-switcher_right">
                             <input type="checkbox" id="custom-position-switcher" class="custom-switcher_inp_2"
-                                   value="1" />
+                                   value="1" name="is_widget_custom_position"/>
                             <span class="custom-switcher_body" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                   title="Toggle to override <Top Left> position" data-bs-custom-class="switcher-tooltip"></span>
                             <span class="custom-switcher_label">Enable precise accessibility widget icon position:</span>
@@ -544,7 +544,7 @@
                     <div class="col-sm-12">
                         <label class="custom-switcher">
                             <span class="custom-switcher_right">
-                                <input type="checkbox" id="custom-size-switcher" class="custom-switcher_inp_2" value="1" />
+                                <input type="checkbox" id="custom-size-switcher" class="custom-switcher_inp_2" name="is_widget_custom_size" value="1" />
                                 <span class="custom-switcher_body" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                       title="Toggle to override selected size" data-bs-custom-class="switcher-tooltip">
                                 </span>
@@ -641,18 +641,61 @@
         <div class="spinner"></div>
     </div>
 {% endblock %}
+
 {% block javascripts %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('bundles/skynettechnologiessyliusallinoneaccessibilityplugin/js/allinoneaccessibility.js') }}"></script>
     <script>
-        $("#custom-position-switcher").click(function () {
-            $(".edit-is-widget-custom-position-1").toggleClass("hide");
-            $(".edit-is-widget-custom-position-0").toggleClass("hide");
-        });
-        $("#custom-size-switcher").click(function () {
-            $(".custom-size-controls").toggleClass("hide");
-            $(".widget-icon").toggleClass("hide");
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get initial state from a hidden field or radio
+            const isCustomPosition = document.querySelector('input[name="is_widget_custom_position"]:checked')?.value || "0";
+
+            const customPos1 = document.querySelector(".edit-is-widget-custom-position-1");
+            const customPos0 = document.querySelector(".edit-is-widget-custom-position-0");
+
+            // Set initial visibility
+            if (isCustomPosition === "1") {
+                customPos1?.classList.remove("hide");
+                customPos1?.style.setProperty("display", "block");
+                customPos0?.classList.add("hide");
+                customPos0?.style.setProperty("display", "none");
+            } else {
+                customPos0?.classList.remove("hide");
+                customPos0?.style.setProperty("display", "block");
+                customPos1?.classList.add("hide");
+                customPos1?.style.setProperty("display", "none");
+            }
+
+            // Toggle on switch click
+            const customPositionBtn = document.getElementById("custom-position-switcher");
+            if (customPositionBtn) {
+                customPositionBtn.addEventListener("click", () => {
+                    const isNowCustom = customPositionBtn.checked;
+
+                    if (isNowCustom) {
+                        customPos1?.classList.remove("hide");
+                        customPos1?.style.setProperty("display", "block");
+                        customPos0?.classList.add("hide");
+                        customPos0?.style.setProperty("display", "none");
+                    } else {
+                        customPos0?.classList.remove("hide");
+                        customPos0?.style.setProperty("display", "block");
+                        customPos1?.classList.add("hide");
+                        customPos1?.style.setProperty("display", "none");
+                    }
+                });
+            }
+
+            // Custom size toggle
+            const customSizeBtn = document.getElementById("custom-size-switcher");
+            if (customSizeBtn) {
+                customSizeBtn.addEventListener("click", () => {
+                    document.querySelector(".custom-size-controls")?.classList.toggle("hide");
+                    document.querySelector(".widget-icon")?.classList.toggle("hide");
+                });
+            }
         });
     </script>
 {% endblock %}
+
 

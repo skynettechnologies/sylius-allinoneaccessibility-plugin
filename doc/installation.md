@@ -57,3 +57,4 @@ php bin/console doctrine:migrations:migrate
 php bin/console sylius:theme:assets:install
 php bin/console cache:clear
 ```
+
