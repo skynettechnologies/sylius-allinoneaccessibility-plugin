@@ -6,29 +6,14 @@ namespace Skynettechnologies\SyliusAllinOneAccessibilityPlugin;
 
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class SkynettechnologiesSyliusAllinOneAccessibilityPlugin extends Bundle
 {
+    use SyliusPluginTrait;
 
-//    public function build(ContainerBuilder $container)
-//    {
-//        parent::build($container);
-//
-//        // If you have a custom extension, you can load it here
-//        $container->addCompilerPass(new YourCustomCompilerPass());
-//    }
-//
-//    public function getAlias(): string
-//    {
-//        return 'skynettechnologies_sylius_allinoneaccessibility';
-//    }
-//
-//    protected function getConfiguration(): array
-//    {
-//        return [
-//            'services' => 'Resources/config/services.yaml',
-//            'routes' => 'Resources/config/routes.yaml',
-//        ];
-//    }
-
+   /* public function build(ContainerBuilder $container): void
+    {
+        parent::build($container);
+    }*/
 }

@@ -10,6 +10,9 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * @method  array
+ */
 final class AllinOneAccessibilityExtension extends AbstractExtension
 {
     private ?string $slider = 'default';  // Default value for slider
@@ -36,5 +39,10 @@ final class AllinOneAccessibilityExtension extends AbstractExtension
     public function getName(): string
     {
         return 'allinoneaccessibility';
+    }
+
+    public function __call(string $name, array $arguments)
+    {
+        // TODO: Implement @method  array
     }
 }

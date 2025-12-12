@@ -134,7 +134,7 @@ English (USA), English (UK), English (Australian), English (Canadian), English (
 
 ### Prerequisites
 
-- Sylius version ^1.14.0
+- Sylius version ^2.1.8
 
 ### Steps
 

@@ -1,7 +1,6 @@
-{% extends '@SyliusAdmin/layout.html.twig' %}
-
+{#{% extends 'SyliusAdminBundle:layout.html.twig' %}#}
+{% extends '@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/admin/layout.html.twig' %}
 {% block stylesheets %}
-    {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/skynettechnologiessyliusallinoneaccessibilityplugin/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/skynettechnologiessyliusallinoneaccessibilityplugin/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/skynettechnologiessyliusallinoneaccessibilityplugin/css/allinoneaccessibility.css') }}">
@@ -119,6 +118,9 @@
     </style>
 {% endblock %}
 {% block content %}
+    <a href="{{ path('sylius_admin_dashboard') }}" class="btn btn-secondary mb-4">
+        <i class="fa fa-arrow-left"></i> Back to Sylius Admin
+    </a>
     <div class="panel panel-default aioa-settings-panel">
         <div class="panel-body">
             <form method="POST" enctype="multipart/form-data" id="form-module">
@@ -134,16 +136,10 @@
                 <div class="form-text" style="font-size: 17px;">
                     <B>NOTE: Currently, All in One Accessibility is dedicated to enhancing accessibility
                         specifically for websites and online stores.</B>
-                </div>
-                <div class="form-group row mt-0" style="margin-bottom: auto;">
-                    <div class="col-sm-12">
-                        <div style="margin-top: 5px;">
-                            <p id="license_key_msg" class="">
-                                Please <a href="https://ada.skynettechnologies.us/trial-subscription?website={{ domain }}" target="_blank">Upgrade</a>
-                                to paid version of All in One Accessibility® Pro.
-                            </p>
-                        </div>
-                    </div>
+                    <B><p id="license_key_msg" class="">
+                            Please <a href="https://ada.skynettechnologies.us/trial-subscription?website={{ domain }}" target="_blank">Upgrade</a>
+                            to paid version of All in One Accessibility® Pro.
+                        </p></B>
                 </div>
                 <div class="form-group mb-3 row " id="colorcode_html" style="margin-top: 30px;">
                         <h3 class="col-sm-3 col-form-label">Hex color code:</h3>

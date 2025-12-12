@@ -250,7 +250,7 @@ BUTTON, INPUT[type=submit], INPUT[type=clear], INPUT[type=button], INPUT[type=re
     max-width: none;
 }
 .panel-body{
-    padding: 1%;
+    padding: 3%;
 }
 
 i.icon.accessibility:before {

@@ -48,53 +48,43 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
 
-      const selectedCustomPosition = document.querySelector('input[name="is_widget_custom_position"]:checked')?.value;
+      const customPositionSwitcher = document.querySelector('#custom-position-switcher');
 
-      if (selectedCustomPosition !== null && selectedCustomPosition !== undefined) {
-        // Set the radio buttons
-        document.querySelectorAll('input[name="is_widget_custom_position"]').forEach(input => {
-          input.checked = input.value === selectedCustomPosition;
-        });
+      function updatePositionUI() {
+        const isCustom = customPositionSwitcher.checked ? "1" : "0";
 
-        // Show/hide related fieldsets
-        const customPos1 = document.querySelector('.edit-is-widget-custom-position-1');
-        const customPos0 = document.querySelector('.edit-is-widget-custom-position-0');
-
-        if (selectedCustomPosition === "1") {
-          customPos1?.classList.remove("hide");
-          customPos1?.style.setProperty("display", "block");
-          customPos0?.classList.add("hide");
-          customPos0?.style.setProperty("display", "none");
+        // Show / Hide sections
+        if (isCustom === "1") {
+          document.querySelector('.edit-is-widget-custom-position-1')?.classList.remove('hide');
+          document.querySelector('.edit-is-widget-custom-position-0')?.classList.add('hide');
         } else {
-          customPos0?.classList.remove("hide");
-          customPos0?.style.setProperty("display", "block");
-          customPos1?.classList.add("hide");
-          customPos1?.style.setProperty("display", "none");
+          document.querySelector('.edit-is-widget-custom-position-0')?.classList.remove('hide');
+          document.querySelector('.edit-is-widget-custom-position-1')?.classList.add('hide');
         }
       }
 
-// Handle widget custom size
-      if (typeof is_widget_custom_size !== "undefined") {
-        const selectedCustomSize = String(is_widget_custom_size);
+// Load saved value from backend
+      if (typeof is_widget_custom_position !== "undefined") {
+        customPositionSwitcher.checked = String(is_widget_custom_position) === "1";
+        updatePositionUI();
+      }
 
+// When user clicks checkbox
+      customPositionSwitcher.addEventListener("change", updatePositionUI);
+
+      if (is_widget_custom_size !== undefined) {
         document.querySelectorAll('input[name="is_widget_custom_size"]').forEach(input => {
-          input.checked = input.value === selectedCustomSize;
+          input.checked = input.value === String(is_widget_custom_size);
         });
 
-        // Show/hide related fieldsets
-        const customSize1 = document.querySelector('.edit-is-widget-custom-size-1');
-        const customSize0 = document.querySelector('.edit-is-widget-custom-size-0');
-
-        if (selectedCustomSize === "1") {
-          customSize1?.classList.remove("hide");
-          customSize1?.style.setProperty("display", "block");
-          customSize0?.classList.add("hide");
-          customSize0?.style.setProperty("display", "none");
+        if (String(is_widget_custom_size) === "1") {
+          // Custom Size Mode
+          document.querySelector('.custom-size-controls')?.classList.remove('hide');
+          document.querySelector('.icon-size-wrapper')?.classList.add('hide');
         } else {
-          customSize0?.classList.remove("hide");
-          customSize0?.style.setProperty("display", "block");
-          customSize1?.classList.add("hide");
-          customSize1?.style.setProperty("display", "none");
+          // Standard Size Mode
+          document.querySelector('.icon-size-wrapper')?.classList.remove('hide');
+          document.querySelector('.custom-size-controls')?.classList.add('hide');
         }
       }
 

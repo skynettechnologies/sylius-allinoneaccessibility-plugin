@@ -1,0 +1,23 @@
+{# YOUR CUSTOM ADMIN LAYOUT #}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}All in One Accessibility{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/syliusui/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/skynettechnologiessyliusallinoneaccessibilityplugin/css/style.css') }}">
+    {% endblock %}
+</head>
+
+<body>
+<div class="ui container" style="margin-top: 40px;">
+    {% block content %}{% endblock %}
+</div>
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/syliusui/app.js') }}"></script>
+{% endblock %}
+</body>
+</html>

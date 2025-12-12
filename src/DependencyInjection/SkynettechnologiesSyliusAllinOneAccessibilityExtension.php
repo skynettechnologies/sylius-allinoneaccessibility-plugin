@@ -25,8 +25,11 @@ final class SkynettechnologiesSyliusAllinOneAccessibilityExtension extends Exten
 
         $container->setParameter('skynettechnologies_sylius_allinoneaccessibility_plugin.slider', $config['slider']);
 
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-
+        // FIXED PATH (Option 2)
+        $loader = new YamlFileLoader(
+            $container,
+            new FileLocator(__DIR__ . '/../Resources/config')
+        );
         $loader->load('services.yaml');
     }
 

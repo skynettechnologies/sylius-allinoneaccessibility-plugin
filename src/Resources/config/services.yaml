@@ -8,28 +8,33 @@ imports:
     - { resource: services/form.yaml }
     - { resource: services/twig.yaml }
 
-# Define the services for the Sylius AllInOneAccessibility Plugin
 services:
-    # Register the DefaultAdminController and inject necessary services (like HttpClientInterface and DB connection)
     Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Controller\Admin\DefaultAdminController:
         arguments:
             $client: '@Symfony\Contracts\HttpClient\HttpClientInterface'
-            $connection: '@doctrine.dbal.default_connection'  # Default DB connection
+            $connection: '@doctrine.dbal.default_connection'
         tags:
             - { name: controller.service_arguments }
 
-    # Register the AdminMenuListener for the Sylius plugin to handle menu-related events
     Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Menu\AdminMenuListener:
         tags:
-            - { name: kernel.event_subscriber }
+            - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
 
-    # Register the AllinOneAccessibilityExtension for Twig
+
     Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Twig\AllinOneAccessibilityExtension:
         tags: [ 'twig.extension' ]
-    # Register all services under the `App` namespace, except for the ones explicitly excluded
-    App\:
-        resource: '../src/'
+
+    Skynettechnologies\SyliusAllinOneAccessibilityPlugin\:
+        resource: '../../'
         exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
+            - '../../DependencyInjection/'
+            - '../../Resources/'
+            - '../../Tests/'
+
+    # Define the AllInOneAccessibility fixture
+    Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Fixture\AllinOneAccessibilityFixture:
+        arguments:
+        # You can inject repositories or factories here if needed
+        # $exampleFactory: '@skynettechnologies_sylius_allinoneaccessibility_plugin.fixture.example_factory.allinoneaccessibility'
+        tags:
+            - { name: sylius.fixture, priority: 0 }
