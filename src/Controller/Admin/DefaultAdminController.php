@@ -30,10 +30,33 @@ class DefaultAdminController extends AbstractController
         $domain = $request->getHttpHost();
         $base64Domain = base64_encode($domain);
 
-        $username = "Dear customer";
+        $username = "Dear Customer";
         $email = "no-reply@sylius.com";
         $message = '';
-
+        $countryCode = '';
+        $noRequiredEu = 1;
+        $ch = curl_init();
+        curl_setopt_array($ch, [
+            CURLOPT_URL => 'https://ipapi.co/json',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 10,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false,
+        ]);
+        $response = curl_exec($ch);
+        if ($response === false) {
+            $curlError = curl_error($ch);
+            curl_close($ch);
+        } else {
+            curl_close($ch);
+            $data = json_decode($response, true);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $countryCode = $data['country_code'] ?? '';
+                $inEu = $data['in_eu'] ?? false;
+                $noRequiredEu = $inEu ? 0 : 1;
+            }
+        }
+        curl_close($ch);
         // Send data to add-user-domain
         $arr_details = [
             'name' => $username,
@@ -57,6 +80,7 @@ class DefaultAdminController extends AbstractController
             'transaction_id' => '',
             'subscr_id' => '',
             'payment_source' => '',
+            'no_required_eu' => $noRequiredEu
         ];
 
         $addUserDomainUrl = 'https://ada.skynettechnologies.us/api/add-user-domain';
@@ -64,14 +88,12 @@ class DefaultAdminController extends AbstractController
             'json' => $arr_details,
             'headers' => ['Content-Type' => 'application/json'],
         ]);
-
         $addUserDomainData = $addUserDomainResponse->toArray();
         if (isset($addUserDomainData['status']) && $addUserDomainData['status'] === 0) {
             $message = "User domain added successfully.";
         } else {
             $message = "Failed to add user domain.";
         }
-
         // Get widget settings
         $widgetSettingsUrl = 'https://ada.skynettechnologies.us/api/widget-settings-platform';
         $widgetSettingsResponse = $this->client->request('POST', $widgetSettingsUrl, [

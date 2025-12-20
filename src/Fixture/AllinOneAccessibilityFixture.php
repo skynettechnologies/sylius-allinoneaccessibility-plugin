@@ -6,7 +6,6 @@ namespace Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Fixture;
 
 use Sylius\Bundle\CoreBundle\Fixture\AbstractResourceFixture;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
-use Doctrine\Persistence\ObjectManager;
 
 class AllinOneAccessibilityFixture extends AbstractResourceFixture
 {
@@ -28,16 +27,5 @@ class AllinOneAccessibilityFixture extends AbstractResourceFixture
     public function getName(): string
     {
         return 'allinoneaccessibility';
-    }
-
-    protected function loadResource(ObjectManager $manager): void
-    {
-        $entity = new \Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Entity\AllInOneAccessibility();
-        $entity->setCode('example');
-        $entity->setMainText('Main text example');
-        $entity->setButtonText('Click me');
-
-        $manager->persist($entity);
-        $manager->flush();
     }
 }

@@ -53,11 +53,9 @@ final class AllinOneAccessibilityTranslationType extends AbstractResourceType
         $resolver->setDefaults([
             'validation_groups' => function (FormInterface $form): array {
                 $allinoneaccessibilityTranslation = $form->getData();
-
                 if (!$allinoneaccessibilityTranslation instanceof AllinOneAccessibilityTranslationInterface || null === $allinoneaccessibilityTranslation->getId()) {
                     return array_merge($this->validationGroups, ['skynettechnologies_image_create']);
                 }
-
                 return $this->validationGroups;
             },
             'constraints' => array(

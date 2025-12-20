@@ -1,17 +1,17 @@
-services:
-    skynettechnologies_sylius_allinoneaccessibility_plugin.fixture.allinoneaccessibility:
-        class: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Fixture\AllinOneAccessibilityFixture
-        arguments:
-            - '@skynettechnologies_sylius_allinoneaccessibility_plugin.manager.allinoneaccessibility'
-            - '@skynettechnologies_sylius_allinoneaccessibility_plugin.fixture.example_factory.allinoneaccessibility'
-        tags:
-            - { name: sylius_fixtures.fixture }
-
-    skynettechnologies_sylius_allinoneaccessibility_plugin.fixture.example_factory.allinoneaccessibility:
-        class: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Fixture\Factory\AllinOneAccessibilityExampleFactory
-        arguments:
-            - '@skynettechnologies_sylius_allinoneaccessibility_plugin.factory.allinoneaccessibility'
-            - '@sylius.repository.channel'
-            - '@sylius.repository.taxon'
-            - '@sylius.repository.locale'
-            - '@file_locator'
+#services:
+#    skynettechnologies_sylius_allinoneaccessibility_plugin.fixture.allinoneaccessibility:
+#        class: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Fixture\AllinOneAccessibilityFixture
+#        arguments:
+#            - '@skynettechnologies_sylius_allinoneaccessibility_plugin.manager.allinoneaccessibility'
+#            - '@skynettechnologies_sylius_allinoneaccessibility_plugin.fixture.example_factory.allinoneaccessibility'
+#        tags:
+#            - { name: sylius_fixtures.fixture }
+#
+#    skynettechnologies_sylius_allinoneaccessibility_plugin.fixture.example_factory.allinoneaccessibility:
+#        class: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Fixture\Factory\AllinOneAccessibilityExampleFactory
+#        arguments:
+#            - '@skynettechnologies_sylius_allinoneaccessibility_plugin.factory.allinoneaccessibility'
+#            - '@sylius.repository.channel'
+#            - '@sylius.repository.taxon'
+#            - '@sylius.repository.locale'
+#            - '@file_locator'

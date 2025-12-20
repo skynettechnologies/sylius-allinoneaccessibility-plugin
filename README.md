@@ -140,7 +140,16 @@ English (USA), English (UK), English (Australian), English (Canadian), English (
 
 1. Run `composer require skynettechnologies/sylius-allinoneaccessibility-plugin`
 
-2. Import the plugin configurations
+2. Enable the plugin bundle
+
+```php
+# config/bundles.php:
+return [
+    Skynettechnologies\SyliusAllinOneAccessibilityPlugin\SkynettechnologiesSyliusAllinOneAccessibilityPlugin::class => ['all' => true],
+]; 
+```
+
+3. Import the plugin configurations
 
 ```yml
 # config/packages/_sylius.yaml
@@ -149,7 +158,7 @@ imports:
     - { resource: "@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/Resources/config/config.yaml" }
 ```
 
-3. Add the shop and admin routes
+4. Add the shop and admin routes
 
 ```yml
 # config/routes.yaml
@@ -167,7 +176,7 @@ skynettechnologies_sylius_allinoneaccessibility_plugin_admin_allinoneaccessibili
     resource: "@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/Resources/config/routes.yaml"
 ```
 
-4. Add the package services
+5. Add the package services
 
 ```yml
 # config/services.yaml
@@ -177,8 +186,6 @@ Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Controller\Admin\DefaultAdm
         $connection: '@doctrine.dbal.default_connection'  # Default DB connection
     tags:
         - { name: controller.service_arguments }
-Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Twig\AllinOneAccessibilityExtension:
-    tags: [ 'twig.extension' ]
 
 app.listener.admin.menu_builder:
     class: Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Menu\AdminMenuListener
@@ -186,17 +193,18 @@ app.listener.admin.menu_builder:
         - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
 ```
 
-5. Create allinoneaccessibility folder: run `mkdir public/media/allinoneaccessibility-image -p` and insert a .gitkeep file in that folder
+6. Create allinoneaccessibility folder: run `mkdir public/media/allinoneaccessibility-image -p` and insert a .gitkeep file in that folder
 
-6. Finish the installation updating the database schema and installing assets
+7. Finish the installation updating the database schema and installing assets
 
 ```
 php bin/console doctrine:migrations:migrate
 php bin/console sylius:theme:assets:install
+php bin/console assets:install
 php bin/console cache:clear
 ```
 
-7. Build and run the package using below command
+8. Build and run the package using below command
 
 ```
 symfony server:start

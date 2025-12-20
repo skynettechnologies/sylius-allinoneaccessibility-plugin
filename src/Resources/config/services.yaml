@@ -4,8 +4,7 @@
 # Importing other configuration files that define services
 imports:
     - { resource: services/event_listener.yaml }
-    - { resource: services/fixture.yaml }
-    - { resource: services/form.yaml }
+#    - { resource: services/form.yaml }
     - { resource: services/twig.yaml }
 
 services:
