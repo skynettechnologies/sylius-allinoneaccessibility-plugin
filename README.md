@@ -134,7 +134,10 @@ English (USA), English (UK), English (Australian), English (Canadian), English (
 
 ### Prerequisites
 
-- Sylius version ^2.1.8
+* **Sylius 2.0+** (or later)
+* **PHP 8.2+** (PHP 8.3 or higher recommended)
+* **Symfony 6.0+** (compatible with Sylius 2.0+)
+* **cURL support** enabled in PHP
 
 ### Steps
 
@@ -198,7 +201,6 @@ app.listener.admin.menu_builder:
 7. Finish the installation updating the database schema and installing assets
 
 ```
-php bin/console doctrine:migrations:migrate
 php bin/console sylius:theme:assets:install
 php bin/console assets:install
 php bin/console cache:clear
@@ -230,6 +232,8 @@ To avoid CORS policy issues, ensure the following URLs are allowed in your websi
 | `https://*.gstatic.com`            | Fonts APIs                                   | Custom Fonts                     |
 | `https://vlibras.gov.br`           | VLibras - Brazilian Sign Language Service    | Sign Language                    |
 
+## Live Demo
+https://syliusv2.skynettechnologies.us/
 
 ## Instructions
 

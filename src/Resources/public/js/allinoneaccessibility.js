@@ -48,143 +48,152 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
 
-      const customPositionSwitcher = document.querySelector('#custom-position-switcher');
-
-      function updatePositionUI() {
-        const isCustom = customPositionSwitcher.checked ? "1" : "0";
-
-        // Show / Hide sections
-        if (isCustom === "1") {
-          document.querySelector('.edit-is-widget-custom-position-1')?.classList.remove('hide');
-          document.querySelector('.edit-is-widget-custom-position-0')?.classList.add('hide');
-        } else {
-          document.querySelector('.edit-is-widget-custom-position-0')?.classList.remove('hide');
-          document.querySelector('.edit-is-widget-custom-position-1')?.classList.add('hide');
-        }
-      }
-
-// Load saved value from backend
-      if (typeof is_widget_custom_position !== "undefined") {
-        customPositionSwitcher.checked = String(is_widget_custom_position) === "1";
-        updatePositionUI();
-      }
-
-// When user clicks checkbox
-      customPositionSwitcher.addEventListener("change", updatePositionUI);
-
-      if (is_widget_custom_size !== undefined) {
-        document.querySelectorAll('input[name="is_widget_custom_size"]').forEach(input => {
-          input.checked = input.value === String(is_widget_custom_size);
-        });
-
-        if (String(is_widget_custom_size) === "1") {
-          // Custom Size Mode
-          document.querySelector('.custom-size-controls')?.classList.remove('hide');
-          document.querySelector('.icon-size-wrapper')?.classList.add('hide');
-        } else {
-          // Standard Size Mode
-          document.querySelector('.icon-size-wrapper')?.classList.remove('hide');
-          document.querySelector('.custom-size-controls')?.classList.add('hide');
-        }
-      }
-
-      if (widgetPositionLeft !== undefined && widgetPositionLeft !== "") {
-        const positionHorizontal = document.querySelector('[name="aioa_custom_position_horizontal"]');
-        if (positionHorizontal) {
-          positionHorizontal.value = widgetPositionLeft;
-        }
-
-        const positionHorizontalType = document.querySelector('[name="aioa_custom_position_horizontal_type"]');
-        if (positionHorizontalType) {
-          positionHorizontalType.value = "left";
-        }
-      }
-
-      if (widgetPositionRight !== undefined && widgetPositionRight !== "") {
-        const positionHorizontal = document.querySelector('[name="aioa_custom_position_horizontal"]');
-        if (positionHorizontal) {
-          positionHorizontal.value = widgetPositionRight;
-        }
-
-        const positionHorizontalType = document.querySelector('[name="aioa_custom_position_horizontal_type"]');
-        if (positionHorizontalType) {
-          positionHorizontalType.value = "right";
-        }
-      }
-
-      // Set Vertical Position: Top / Bottom
-      if (widgetPositionTop !== undefined && widgetPositionTop !== "") {
-        const positionVerticalType = document.querySelector('[name="aioa_custom_position_vertical_type"]');
-        if (positionVerticalType) {
-          positionVerticalType.value = "top";
-        }
-        const widgetPositionBottom = document.getElementById('widget_position_bottom');
-        if (widgetPositionBottom) widgetPositionBottom.value = "";
-      }
-
-      if (widgetPositionBottom !== undefined && widgetPositionBottom !== "") {
-        const positionVerticalType = document.querySelector('[name="aioa_custom_position_vertical_type"]');
-        if (positionVerticalType) {
-          positionVerticalType.value = "bottom";
-        }
-        const widgetPositionTop = document.getElementById('widget_position_top');
-        if (widgetPositionTop) widgetPositionTop.value = "";
-      }
-
-      // Select correct option for Horizontal Position (Left or Right)
-      if (widgetPositionLeft || widgetPositionRight) {
-        const positionHorizontalTypeSelect = document.querySelector('[name="aioa_custom_position_horizontal_type"]');
-        if (positionHorizontalTypeSelect) {
-          const options = positionHorizontalTypeSelect.querySelectorAll('option');
-          options.forEach(option => {
-            if (widgetPositionLeft && option.value === "left") {
-              option.selected = true;
+        if (is_widget_custom_position !== undefined) {
+        const customPositionCheckbox = document.getElementById('custom-position-switcher');
+        const customBox = document.querySelector('.edit-is-widget-custom-position-1');
+        const defaultBox = document.querySelector('.edit-is-widget-custom-position-0');
+    
+        if (customPositionCheckbox) {
+            customPositionCheckbox.checked = String(is_widget_custom_position) === "1";
+    
+            if (customPositionCheckbox.checked) {
+                customBox?.classList.remove('hide');
+                customBox.style.display = 'block'; 
+                defaultBox?.classList.add('hide');
+                if (defaultBox) defaultBox.style.display = 'none';
+            } else {
+                customBox?.classList.add('hide');
+                customBox.style.display = 'none';    
+                defaultBox?.classList.remove('hide');
+                if (defaultBox) defaultBox.style.display = 'block';
             }
-            if (widgetPositionRight && option.value === "right") {
-              option.selected = true;
-            }
-          });
+    
+            customPositionCheckbox.addEventListener('change', function () {
+                if (this.checked) {
+                    customBox?.classList.remove('hide');
+                    customBox.style.display = 'block'; 
+                    defaultBox?.classList.add('hide');
+                    if (defaultBox) defaultBox.style.display = 'none';
+                } else {
+                    customBox?.classList.add('hide');
+                    customBox.style.display = 'none';   
+                    defaultBox?.classList.remove('hide');
+                    if (defaultBox) defaultBox.style.display = 'block';
+                }
+            });
         }
-      }
+    }
 
-      // Select correct option for Vertical Position (Top or Bottom)
-      if (widgetPositionTop || widgetPositionBottom) {
-        const positionVerticalTypeSelect = document.querySelector('[name="aioa_custom_position_vertical_type"]');
-        if (positionVerticalTypeSelect) {
-          const options = positionVerticalTypeSelect.querySelectorAll('option');
-          options.forEach(option => {
-            if (widgetPositionTop && option.value === "top") {
-              option.selected = true;
+        if (is_widget_custom_size !== undefined) {
+            const customSizeCheckbox = document.getElementById('custom-size-switcher');
+
+            if (customSizeCheckbox) {
+                customSizeCheckbox.checked = String(is_widget_custom_size) === "1";
             }
-            if (widgetPositionBottom && option.value === "bottom") {
-              option.selected = true;
+
+            const sizeCustomBox = document.querySelector('.custom-size-controls');
+            const sizeDefaultBox = document.querySelector('#select_icon_size');
+            
+            if (String(is_widget_custom_size) === "1") {
+                sizeCustomBox?.classList.remove('hide');
+                sizeDefaultBox?.classList.add('hide');
+            } else {
+                sizeCustomBox?.classList.add('hide');
+                sizeDefaultBox?.classList.remove('hide');
             }
-          });
         }
-      }
-      const positionHorizontalTextBox = document.querySelector('[name="aioa_custom_position_horizontal"]');
-      if (positionHorizontalTextBox) {
+
+        if (widgetPositionLeft !== undefined && widgetPositionLeft !== null) {
+            const positionHorizontal = document.querySelector('[name="aioa_custom_position_horizontal"]');
+            if (positionHorizontal) {
+                positionHorizontal.value = widgetPositionLeft;
+            }
+
+            const positionHorizontalType = document.querySelector('[name="aioa_custom_position_horizontal_type"]');
+            if (positionHorizontalType) {
+                positionHorizontalType.value = "left";
+            }
+        }
+
+        if (widgetPositionRight !== undefined && widgetPositionRight !== null) {
+            const positionHorizontal = document.querySelector('[name="aioa_custom_position_horizontal"]');
+            if (positionHorizontal) {
+                positionHorizontal.value = widgetPositionRight;
+            }
+
+            const positionHorizontalType = document.querySelector('[name="aioa_custom_position_horizontal_type"]');
+            if (positionHorizontalType) {
+                positionHorizontalType.value = "right";
+            }
+        }
+
+        // Set Vertical Position: Top / Bottom
+        if (widgetPositionTop !== undefined && widgetPositionTop !== null) {
+            const positionVerticalType = document.querySelector('[name="aioa_custom_position_vertical_type"]');
+            if (positionVerticalType) {
+                positionVerticalType.value = "top";
+            }
+            const widgetPositionBottom = document.getElementById('widget_position_bottom');
+            if (widgetPositionBottom) widgetPositionBottom.value = "";
+        }
+
+        if (widgetPositionBottom !== undefined && widgetPositionBottom !== null) {
+            const positionVerticalType = document.querySelector('[name="aioa_custom_position_vertical_type"]');
+            if (positionVerticalType) {
+                positionVerticalType.value = "bottom";
+            }
+            const widgetPositionTop = document.getElementById('widget_position_top');
+            if (widgetPositionTop) widgetPositionTop.value = "";
+        }
+
+        const horizontalInput = document.querySelector('[name="aioa_custom_position_horizontal"]');
+        const horizontalType = document.querySelector('[name="aioa_custom_position_horizontal_type"]');
+
+        if (widgetPositionLeft !== undefined && widgetPositionLeft !== null && widgetPositionLeft !== "") {
+            horizontalInput.value = widgetPositionLeft;
+            horizontalType.value = "left";
+        }
+        else if (widgetPositionRight !== undefined && widgetPositionRight !== null && widgetPositionRight !== "") {
+            horizontalInput.value = widgetPositionRight;
+            horizontalType.value = "right";
+        }
+
+        const verticalInput = document.querySelector('[name="aioa_custom_position_vertical"]');
+        const verticalType = document.querySelector('[name="aioa_custom_position_vertical_type"]');
+
+        if (widgetPositionTop !== undefined && widgetPositionTop !== null && widgetPositionTop !== "") {
+            verticalInput.value = widgetPositionTop;
+            verticalType.value = "top";
+        }
+        else if (widgetPositionBottom !== undefined && widgetPositionBottom !== null && widgetPositionBottom !== "") {
+            verticalInput.value = widgetPositionBottom;
+            verticalType.value = "bottom";
+        }
+
+
         const positionHorizontalTextBox = document.querySelector('[name="aioa_custom_position_horizontal"]');
-        var custom_position_horizontal_type = document.querySelector('select[name="aioa_custom_position_horizontal_type"]').value;
-        if(custom_position_horizontal_type=='left'){
-          positionHorizontalTextBox.value = widgetPositionLeft;
+        if (positionHorizontalTextBox) {
+            const positionHorizontalTextBox = document.querySelector('[name="aioa_custom_position_horizontal"]');
+            var custom_position_horizontal_type = document.querySelector('select[name="aioa_custom_position_horizontal_type"]').value;
+            if(custom_position_horizontal_type=='left'){
+                positionHorizontalTextBox.value = widgetPositionLeft;
+            }
+            else if(custom_position_horizontal_type=='right') {
+                positionHorizontalTextBox.value = widgetPositionRight;
+            }
         }
-        else if(custom_position_horizontal_type=='right') {
-          positionHorizontalTextBox.value = widgetPositionRight;
-        }
-      }
 
-      const positionVerticalTextBox = document.querySelector('[name="aioa_custom_position_vertical"]');
-      if (positionVerticalTextBox) {
         const positionVerticalTextBox = document.querySelector('[name="aioa_custom_position_vertical"]');
-        var custom_position_vertical_type = document.querySelector('select[name="aioa_custom_position_vertical_type"]').value;
-        if(custom_position_vertical_type=='bottom'){
-          positionVerticalTextBox.value = widgetPositionBottom;
+        if (positionVerticalTextBox) {
+            const positionVerticalTextBox = document.querySelector('[name="aioa_custom_position_vertical"]');
+            var custom_position_vertical_type = document.querySelector('select[name="aioa_custom_position_vertical_type"]').value;
+            if(custom_position_vertical_type=='bottom'){
+                positionVerticalTextBox.value = widgetPositionBottom;
+            }
+            else if(custom_position_vertical_type=='top') {
+                positionVerticalTextBox.value = widgetPositionTop;
+            }
         }
-        else if(custom_position_vertical_type=='top') {
-          positionVerticalTextBox.value = widgetPositionTop;
-        }
-      }
 
     }
 
@@ -313,7 +322,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var widget_position_top=(custom_position_vertical_type==="top")?custom_position_vertical:"";
         var widget_position_bottom=(custom_position_vertical_type==="bottom")?custom_position_vertical:"";
 
-        var is_widget_custom_position = document.querySelector('input[name="is_widget_custom_position"]:checked')?.value || '0';
+        const customPositionCheckbox = document.getElementById('custom-position-switcher');
+        var is_widget_custom_position = customPositionCheckbox && customPositionCheckbox.checked ? '1' : '0';
         var is_widget_custom_size = document.querySelector('input[name="is_widget_custom_size"]:checked')?.value || '0';
         var widget_icon_size_custom = document.getElementById("widget_icon_size_custom") ? document.getElementById("widget_icon_size_custom").value : '';
         var user_name = document.getElementById("user_name").value;  // You could also dynamically set this from JS

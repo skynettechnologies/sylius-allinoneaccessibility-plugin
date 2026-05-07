@@ -38,13 +38,13 @@ final class AllinOneAccessibilityExtension extends AbstractExtension
         $icon_type  = 'aioa-icon-type-1';
         $icon_size  = 'aioa-medium-icon';
         // Call API
-        $apiUrl = 'https://ada.skynettechnologies.us/api/add-user-domain';
+        $apiUrl = 'https://ada.skynettechnologies.us/api/widget-settings';
         $ch = curl_init($apiUrl);
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => json_encode([
-                'website' => $domainBase64
+                'website_url' => $domain
             ]),
             CURLOPT_HTTPHEADER => [
                 'Content-Type: application/json'
@@ -56,7 +56,7 @@ final class AllinOneAccessibilityExtension extends AbstractExtension
         curl_close($ch);
         $apiResponse = json_decode($response, true);
         // 0 = EU | 1 = NON-EU
-        $noRequiredEu = $apiResponse['website_data']['no_required_eu'] ?? 1;
+        $noRequiredEu = $apiResponse['Data']['no_required_eu'] ?? 1;
         if ($noRequiredEu == 0) {
             return "
                 <script>
@@ -72,7 +72,7 @@ final class AllinOneAccessibilityExtension extends AbstractExtension
             return '<script>
             const scriptTag = document.createElement("script");
             scriptTag.id = "aioa-adawidget";
-            scriptTag.src = "https://www.skynettechnologies.com/accessibility/js/all-in-one-accessibility-js-widget-minify.js?colorcode=#&token=&position=";
+            scriptTag.src = "https://www.skynettechnologies.com/accessibility/js/all-in-one-accessibility-js-widget-minify.js?colorcode=#420083&token=&position=bottom_right";
             document.head.appendChild(scriptTag);
         </script>';
         }

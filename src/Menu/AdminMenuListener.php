@@ -12,14 +12,11 @@ final class AdminMenuListener
     public function addAdminMenuItems(MenuBuilderEvent $event): void
     {
         $menu = $event->getMenu();
-
         /** @var ItemInterface $item */
         if (null === $menu->getChild('All in One Accessibility')) {
             $menu->addChild('All in One Accessibility');
         }
-
         $subMenu = $menu->getChild('All in One Accessibility');
-
         // No asset(), no constructor, no icon path
         $subMenu
             ->addChild('allinoneaccessibility', [
@@ -27,6 +24,7 @@ final class AdminMenuListener
             ])
             ->setLabel('All in One Accessibility®')
             ->setAttribute('type', 'link')
-            ->setLabelAttribute('icon', 'unhide accessibility');
+            ->setLabelAttribute('icon', 'lucide:search');
     }
+
 }

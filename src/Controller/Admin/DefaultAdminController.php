@@ -2,6 +2,7 @@
 
 namespace Skynettechnologies\SyliusAllinOneAccessibilityPlugin\Controller\Admin;
 
+use Sylius\Component\Core\Model\AdminUserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,27 +15,51 @@ class DefaultAdminController extends AbstractController
 {
     private $client;
     private $connection;
+    private RequestStack $requestStack;
 
-    public function __construct(HttpClientInterface $client, Connection $connection)
+    public function __construct(HttpClientInterface $client, Connection $connection,RequestStack $requestStack)
     {
         $this->client = $client;
         $this->connection = $connection;
+        $this->requestStack = $requestStack;
     }
 
     /**
      * @Route("/index/{page}", name="sylius_all_in_one_accessibility_plugin.index.admin", defaults={"page"=1})
+     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
     public function adminAction($page, RequestStack $requestStack): Response
     {
-        $request = $requestStack->getCurrentRequest();
-        $domain = $request->getHttpHost();
+        $user = $this->getUser();
+        $adminName = '';
+        $adminEmail = '';
+
+        if ($user instanceof AdminUserInterface) {
+            $firstName = $user->getFirstName();
+            $lastName  = $user->getLastName();
+            $adminName  = trim($firstName . ' ' . $lastName);
+            $adminEmail = $user->getEmail();
+        }
+        $request = $this->requestStack->getCurrentRequest();
+        $domain = $request ? $request->getHost() : 'localhost';
         $base64Domain = base64_encode($domain);
 
-        $username = "Dear Customer";
-        $email = "no-reply@sylius.com";
+        /**
+         * Fallback logic
+         */
+        if (empty($adminName)) {
+            $adminName = $domain;
+        }
+
+        if (empty($adminEmail)) {
+            $cleanDomain = preg_replace('#^www\.#', '', $domain);
+            $adminEmail = 'no-reply@' . $cleanDomain;
+        }
+        
         $message = '';
         $countryCode = '';
         $noRequiredEu = 1;
+
         $ch = curl_init();
         curl_setopt_array($ch, [
             CURLOPT_URL => 'https://ipapi.co/json',
@@ -44,6 +69,7 @@ class DefaultAdminController extends AbstractController
             CURLOPT_SSL_VERIFYHOST => false,
         ]);
         $response = curl_exec($ch);
+
         if ($response === false) {
             $curlError = curl_error($ch);
             curl_close($ch);
@@ -59,8 +85,8 @@ class DefaultAdminController extends AbstractController
         curl_close($ch);
         // Send data to add-user-domain
         $arr_details = [
-            'name' => $username,
-            'email' => $email,
+            'name' => $adminName,
+            'email' => $adminEmail,
             'company_name' => '',
             'website' => $base64Domain,
             'package_type' => 'free-widget',
@@ -82,43 +108,56 @@ class DefaultAdminController extends AbstractController
             'payment_source' => '',
             'no_required_eu' => $noRequiredEu
         ];
+        
+      
 
-        $addUserDomainUrl = 'https://ada.skynettechnologies.us/api/add-user-domain';
-        $addUserDomainResponse = $this->client->request('POST', $addUserDomainUrl, [
-            'json' => $arr_details,
-            'headers' => ['Content-Type' => 'application/json'],
-        ]);
-        $addUserDomainData = $addUserDomainResponse->toArray();
-        if (isset($addUserDomainData['status']) && $addUserDomainData['status'] === 0) {
-            $message = "User domain added successfully.";
-        } else {
-            $message = "Failed to add user domain.";
+        $session = $this->requestStack->getSession();
+
+        if (!$session->get('aioa_domain_added')) {
+        
+            $addUserDomainUrl = 'https://ada.skynettechnologies.us/api/add-user-domain';
+        
+            try {
+                $addUserDomainResponse = $this->client->request('POST', $addUserDomainUrl, [
+                    'json' => $arr_details,
+                    'headers' => ['Content-Type' => 'application/json'],
+                ]);
+        
+                $statusCode = $addUserDomainResponse->getStatusCode();
+        
+                if ($statusCode === 200) {
+                    $addUserDomainData = $addUserDomainResponse->toArray(false);
+                
+                    if (isset($addUserDomainData['status']) && $addUserDomainData['status'] === 0) {
+                        $message = "User domain added successfully.";
+                        $session->set('aioa_domain_added', true);
+                    } else {
+                        $message = "Failed to add user domain.";
+                    }
+                }
+        
+            } catch (\Exception $e) {
+                $message = "Error: " . $e->getMessage();
+            }
+        
+            $session->set('aioa_domain_added', true);
         }
+        
+       
         // Get widget settings
-        $widgetSettingsUrl = 'https://ada.skynettechnologies.us/api/widget-settings-platform';
+        $widgetSettingsUrl = 'https://ada.skynettechnologies.us/api/widget-settings-update-platform';
         $widgetSettingsResponse = $this->client->request('POST', $widgetSettingsUrl, [
             'json' => ['website_url' => $domain],
             'headers' => ['Content-Type' => 'application/json'],
         ]);
-        $widgetData = $widgetSettingsResponse->toArray();
-
-        // Optional: final autologin call (can be removed if unnecessary)
-        $autologinUrl = 'https://ada.skynettechnologies.us/api/get-autologin-link';
-        $autologinResponse = $this->client->request('POST', $autologinUrl, [
-            'json' => ['website' => $base64Domain],
-            'headers' => ['Content-Type' => 'application/json'],
-        ]);
-        $autologinData = $autologinResponse->toArray();
-        if (isset($autologinData['status'])) {
-            $message .= " Autologin Link generated.";
-        }
+        $widgetData = $widgetSettingsResponse->toArray(false);
         $url = $this->generateUrl('skynettechnologies_sylius_allinoneaccessibility_plugin_admin_allinoneaccessibility_create', ['page' => $page]);
-        return $this->render('@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/admin/AllinOneAccessibility/_form.html.twig', [
+        return $this->render('@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/Admin/AllinOneAccessibility/_form.html.twig', [
             'url' => $url,
             'page' => $page,
             'domain' => $domain,
-            'user_name' => $username,
-            'email' => $email,
+            'user_name' => $adminName,
+            'email' => $adminEmail,
             'message' => $message,
             'id' => $widgetData['id'] ?? '',
             'color' => $widgetData['color'] ?? '#420083',
