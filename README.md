@@ -1,158 +1,91 @@
-# All in One Accessibility®: Sylius Extension
+# All in One Accessibility® – Sylius Extension
 
-## Enhance Your Website's Accessibility with All in One Accessibility®
+This [Sylius accessibility extension](https://www.skynettechnologies.com/sylius-website-accessibility) adds an accessible experience for users with visual, auditory, motor, or cognitive disabilities. It supports assistive technologies, offers customizable updates, and enhances overall usability according to WCAG 2.1, 2.2, ADA, EAA, Section 508, France RGAA, California Unruh, European EAA EN 301 549, UK Equality Act, Spain UNE 139803:2012, Australian DDA, Israeli Standard 5568, Ontario AODA, Canada ACA, German BITV, Brazilian Inclusion Law (LBI 13.146/2015), JIS X 8341 (Japan), Italian Stanca Act, Indian RPwD Act, Switzerland DDA, and other [accessibility standards](https://www.skynettechnologies.com/accessibility-standards).
 
-**Did you know?** Your website's accessibility can make or break your audience's experience. With the **All in One Accessibility AI Free Accessibility Widget**, you can instantly boost your site's inclusivity and support over **140+ languages**! Experience the power of **23 essential features** in our free version and take the first step towards creating a better web for everyone.
+Whether you're aiming to increase compliance, expand audience reach, or create a more user-friendly browsing experience, the Sylius accessibility extension delivers a practical, customized solution that enhances accessibility without requiring any coding or design changes. The free accessibility Sylius plugin is an ideal starting point for Sylius store owners who want to improve accessibility quickly and cost-effectively. The Sylius accessibility widget is also ideal for Sylius website owners, agencies, businesses of all sizes, and organizations seeking accessibility compliance, while ultimately benefiting users with disabilities who need a better, more inclusive digital experience.
 
-### Why All in One Accessibility®?
+This [free website accessibility widget](https://www.skynettechnologies.com/free-website-accessibility-widget) quickly adds essential accessibility features through a lightweight, easy to install solution that supports inclusive browsing and compliance efforts.
 
-This lightweight and flexible widget is designed to improve your website’s compliance with **international accessibility standards**, including:
+---
 
-### **International Standards**
+## Which features are available in the free accessibility Sylius widget?
 
-- **WCAG 2.0, 2.1, & 2.2** (Web Content Accessibility Guidelines)  
-- **ATAG 2.0** (Authoring Tool Accessibility Guidelines)  
-- **PDF/UA – ISO 14289** (Accessible PDF Format)
+- Auto-detect language
+- Supports 190+ multi-languages – ideal for global Sylius storefronts
+- Skip to Navigation / Content / Footer
+- Content Adjustment Options
+- Visual & Color Adjustments
+- Free Sylius accessibility widget customization including colors, size, icon, and position
+- Reading mask
+- Accessibility statement
 
-### **United States**
-- **ADA (Americans with Disabilities Act)**  
-- **ADA Title III Website Accessibility**  
-- **Section 508 (U.S. Government Standard)**  
-- **California Unruh Civil Rights Act**  
-- **Texas Website Accessibility Compliance**  
-- **Florida Website Compliance**  
-- **Colorado Accessibility Law**  
-- **Kentucky Web Accessibility**  
-- **New York State Web Accessibility Policy**  
-- **Arizona ADA Compliance**  
-- **Connecticut ADA Web Accessibility**  
-- **Indiana Digital Accessibility**  
-- **Nevada ADA Compliance Requirements**  
-- **Georgia Website ADA Compliance**  
-- **Ohio ADA Compliance**  
-- **Michigan ADA Compliance**  
-- **Virginia Web Accessibility Legislation**  
-- **Kansas ADA Compliance**  
-- **Washington State ADA Compliance**
+Explore the [free accessibility widget features guide](https://www.skynettechnologies.com/sites/default/files/Free-Accessibility-Widget-Features-Guide.pdf).
 
-### **Canada**
-- **AODA (Accessibility for Ontarians with Disabilities Act)**  
-- **ACA (Accessible Canada Act)**
+---
 
-### **United Kingdom**
-- **UK Equality Act (EA)**
+## SECURITY & PRIVACY NOTES
 
-### **European Union**
-- **EAA / EN 301 549 Accessibility**  
-- **EN 301 549 v4.1.1**
+- This Free Accessibility Sylius plugin follows several data and application security practices, including ISO 9001:2015 & ISO 27001:2022, GDPR, CCPA, COPPA, HIPAA, and SOC 2 Type II.
+- Skynet Technologies USA LLC is an organizational member of IAAP and of W3C.
+- No personal data is intentionally stored by the plugin itself. Site owners are responsible for reviewing their own compliance requirements.
 
-### **France**
-- **RGAA (Référentiel Général d’Amélioration de l’Accessibilité)**
+---
 
-### **Germany**
-- **BITV (Barrierefreie-Informationstechnik-Verordnung)**
+## LIMITATIONS
 
-### **Italy**
-- **Italian Stanca Act**
+- Some advanced features require a commercial subscription.
 
-### **Spain**
-- **UNE 139803:2012**
+For more details, visit [**Sylius accessibility extension**](https://www.skynettechnologies.com/sylius-website-accessibility).
 
-### **Austria**
-- **WZG (Austrian Web Accessibility Act)**
+---
 
-### **Switzerland**
-- **Swiss Disability Discrimination Act (DDA)**
+## FAQs
 
-### **Sweden**
-- **Swedish Discrimination Act (2008:567)**
+**Does this free Sylius accessibility plugin support multilingual Sylius sites?**
 
-### **Israel**
-- **IS 5568 (Israeli Standard)**
+Yes. It supports 190+ languages.
 
-### **Australia**
-- **Australian DDA (Disability Discrimination Act)**
+**How can I upgrade from free to paid Sylius accessibility widget for upgrading accessibility features?**
 
-### **India**
-- **RPD Act (Rights of Persons with Disabilities Act)**  
-- **GIGW 3.0 (Guidelines for Indian Government Websites)**
+Upgrade to a paid subscription with **90+ advanced features** and take your website's accessibility to the next level. Checkout the steps for upgrading [free to paid Sylius accessibility widget](https://www.skynettechnologies.com/blog/upgrade-all-in-one-accessibility-free-widget-to-paid-version#free-paid-version).
 
-### **Brazil**
-- **LBI 13.146/2015 (Brazilian Inclusion Law)**
+**What additional features are available in the paid version of Sylius WCAG ADA EAA extension?**
 
-### **Mexico**
-- **ADA-Inspired Web Accessibility Compliance**
+The paid version of the Sylius accessibility widget includes features like screen reader, voice navigation, talk & type, virtual keyboard, accessibility profiles tailored for different users with disabilities, Libras (Brazilian sign language), dictionary search, multi-language support (190+ languages), and many more. Pricing starts from $25 / month. Explore more information about the [accessibility widget](https://www.skynettechnologies.com/all-in-one-accessibility) and buy now.
 
-### **Japan**
-- **JIS X 8341**
+---
 
-### **South Korea**
-- **KWCAG 2.1 (Korean Web Content Accessibility Guidelines)**
+## Supported Languages (190+ Languages)
 
-### **Singapore**
-- **DSS and SGDS (Design System and Digital Standards)**
+English (USA), English (UK), English (Australian), English (Canadian), English (South Africa), Español, Español (Mexicano), Deutsch, عربى, Português, Português (Brazil), 日本語, Français, Italiano, Polski, Pусский, 中文, 中文 (Traditional), עִברִית, Magyar, Slovenčina, Suomenkieli, Türkçe, Ελληνικά, Latinus, Български, Català, Čeština, Dansk, Nederlands, हिंदी, Bahasa Indonesia, 한국인, Lietuvių, Bahasa Melayu, Norsk, Română, Slovenščina, Svenska, แบบไทย, Українська, Việt Nam, বাঙালি, සිංහල, አማርኛ, Hmoob, မြန်မာ, Eesti keel, latviešu, Cрпски, Hrvatski, ქართული, ʻŌlelo Hawaiʻi, Cymraeg, Cebuano, Samoa, Kreyòl ayisyen, Føroyskt, Crnogorski, Azerbaijani, Euskara, Tagalog, Galego, Norsk Bokmål, فارسی, ਪੰਜਾਬੀ, shqiptare, Hայերեն, অসমীয়া, Aymara, Bamanankan, беларускі, bosanski, Corsu, ދިވެހި, Esperanto, Eʋegbe, Frisian, guarani, ગુજરાતી, Hausa, íslenskur, Igbo, Gaeilge, basa jawa, ಕನ್ನಡ, қазақ, ខ្មែរ, Kinyarwanda, Kurdî, Кыргызча, ພາສາລາວ, Lingala, Luganda, lëtzebuergesch, македонски, Malagasy, മലയാളം, Malti, Maori, मराठी, Монгол, नेपाली, Sea, ଓଡିଆ, Afaan Oromoo, پښتو, Runasimi, संस्कृत, Gàidhlig na h-Alba, Sesotho, Shona, سنڌي, Soomaali, basa Sunda, kiswahili, тоҷикӣ, தமிழ், Татар, తెలుగు, ትግሪኛ, Tsonga, Türkmenler, Ride, اردو, ئۇيغۇر, o'zbek, isiXhosa, יידיש, Yoruba, Zulu, भोजपुरी, डोगरी, कोंकणी, Kurdî, Krio, मैथिली, Meiteilon, Mizo tawng, Sepedi, Ilocano, دری
 
-### **Malaysia**
-- **PWD Act 2008 (Persons with Disabilities Act)**
+---
 
-### **Thailand**
-- **PDA 2013 (Persons with Disabilities Empowerment Act)**
+## Installation Steps
 
-### **United Arab Emirates**
-- **UAE Disability Act (Federal Law No. 29 of 2006)**
-
-For more details on supported accessibility laws and standards, visit  
-**[All in One Accessibility Supported Standards](https://www.skynettechnologies.com/accessibility-standards)**
-
-By implementing the widget, you’re not only enhancing user experience but also minimizing the risk of costly accessibility lawsuits. For more details, visit **[All in One Accessibility®.](https://www.skynettechnologies.com/all-in-one-accessibility)**
-
-### Built for Excellence
-
-- Adheres to **ISO 9001:2015** & **ISO 27001:2013** standards.
-- Fully compliant with **GDPR** and **COPPA** regulations.
-- Proud member of **W3C** and the **International Association of Accessibility Professionals (IAAP)**.
-
-### Upgrade to Unlock Premium Features
-
-**Why stop at 23 features?** Unlock over **70+ advanced features** with our **paid subscription** and take your website’s accessibility to the next level. Compare the benefits of Free vs. Paid versions **[here](https://www.skynettechnologies.com/all-in-one-accessibility/features)**.
-
-Checkout the steps for upgrading **[Free to Paid Widget Upgrade Steps](https://www.skynettechnologies.com/blog/upgrade-all-in-one-accessibility-free-widget-to-paid-version#free-paid-version).**
-
-### Start Your Accessibility Journey Today
-
-Try it risk-free with our **10-day free trial**! Don’t wait, experience the benefits today. **[Click to get started](https://ada.skynettechnologies.us/trial-subscription?utm_source=all-in-one-accessibility&utm_medium=landing-page&utm_campaign=trial-subscription)** and join a growing community of forward-thinking businesses making the web accessible to everyone.
-
-**Your website’s accessibility journey begins here. Make an impact.**
-
-For more details, visit **[All in One Accessibility®](https://www.skynettechnologies.com/all-in-one-accessibility)** and transform your digital presence.
-
-### Supported Languages (140+ Languages)
-
-English (USA), English (UK), English (Australian), English (Canadian), English (South Africa), Español, Español (Mexicano), Deutsch, عربى, Português, Português (Brazil), 日本語, Français, Italiano, Polski, Pусский, 中文, 中文 (Traditional), עִברִית, Magyar, Slovenčina, Suomenkieli, Türkçe, Ελληνικά, Latinus, Български, Català, Čeština, Dansk, Nederlands, हिंदी, Bahasa Indonesia, 한국인, Lietuvių, Bahasa Melayu, Norsk, Română, Slovenščina, Svenska, แบบไทย, Українська, Việt Nam, বাঙালি, සිංහල, አማርኛ, Hmoob, မြန်မာ, Eesti keel, latviešu, Cрпски, Hrvatski, ქართული, ʻŌlelo Hawaiʻi, Cymraeg, Cebuano, Samoa, Kreyòl ayisyen, Føroyskt, Crnogorski, Azerbaijani, Euskara, Tagalog, Galego, Norsk Bokmål, فارسی, ਪੰਜਾਬੀ, shqiptare, Hայերեն, অসমীয়া, Aymara, Bamanankan, беларускі, bosanski, Corsu, ދިވެހި, Esperanto, Eʋegbe, Frisian, guarani, ગુજરાતી, Hausa, íslenskur, Igbo, Gaeilge, basa jawa, ಕನ್ನಡ, қазақ, ខ្មែរ, Kinyarwanda, Kurdî, Кыргызча, ພາສາລາວ, Lingala, Luganda, lëtzebuergesch, македонски, Malagasy, മലയാളം, Malti, Maori, मराठी, Монгол, नेपाली, Sea, ଓଡିଆ, Afaan Oromoo, پښتو, Runasimi, संस्कृत, Gàidhlig na h-Alba, Sesotho, Shona, سنڌي, Soomaali, basa Sunda, kiswahili, тоҷикӣ, தமிழ், Татар, తెలుగు, ትግሪኛ, Tsonga, Türkmenler, Ride, اردو, ئۇيغۇر, o'zbek, isiXhosa, יידיש, Yoruba, Zulu, भोजपुरी, डोगरी, कोंकणी, Kurdî, Krio, मैथिली, Meiteilon, Mizo tawng, Sepedi, Ilocano, دری.
-
-## Installation
+Explore [Sylius WCAG accessibility widget installation steps](https://www.skynettechnologies.com/blog/sylius-web-accessibility-widget-installation).
 
 ### Prerequisites
 
-* **Sylius 2.0+** (or later)
-* **PHP 8.2+** (PHP 8.3 or higher recommended)
-* **Symfony 6.0+** (compatible with Sylius 2.0+)
-* **cURL support** enabled in PHP
+- **Sylius 2.0+** (or later)
+- **PHP 8.2+** (PHP 8.3 or higher recommended)
+- **Symfony 6.0+** (compatible with Sylius 2.0+)
+- **cURL support** enabled in PHP
 
 ### Steps
 
 1. Run `composer require skynettechnologies/sylius-allinoneaccessibility-plugin`
 
-2. Enable the plugin bundle
+2. Enable the plugin bundle:
 
 ```php
 # config/bundles.php:
 return [
     Skynettechnologies\SyliusAllinOneAccessibilityPlugin\SkynettechnologiesSyliusAllinOneAccessibilityPlugin::class => ['all' => true],
-]; 
+];
 ```
 
-3. Import the plugin configurations
+3. Import the plugin configurations:
 
 ```yml
 # config/packages/_sylius.yaml
@@ -161,7 +94,7 @@ imports:
     - { resource: "@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/Resources/config/config.yaml" }
 ```
 
-4. Add the shop and admin routes
+4. Add the shop and admin routes:
 
 ```yml
 # config/routes.yaml
@@ -179,7 +112,7 @@ skynettechnologies_sylius_allinoneaccessibility_plugin_admin_allinoneaccessibili
     resource: "@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/Resources/config/routes.yaml"
 ```
 
-5. Add the package services
+5. Add the package services:
 
 ```yml
 # config/services.yaml
@@ -196,112 +129,145 @@ app.listener.admin.menu_builder:
         - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
 ```
 
-6. Create allinoneaccessibility folder: run `mkdir public/media/allinoneaccessibility-image -p` and insert a .gitkeep file in that folder
+6. Create allinoneaccessibility folder: run `mkdir public/media/allinoneaccessibility-image -p` and insert a `.gitkeep` file in that folder.
 
-7. Finish the installation updating the database schema and installing assets
+7. Finish the installation by updating the database schema and installing assets:
 
-```
+```bash
 php bin/console sylius:theme:assets:install
 php bin/console assets:install
 php bin/console cache:clear
 ```
 
-8. Build and run the package using below command
+8. Build and run the package:
 
-```
+```bash
 symfony server:start
 ```
 
+---
+
 ## Usage
 
-Once you have registered the settings in the Control Panel, make sure to add the tag to any of the layouts of your website. The tag to use is:
+Once you have registered the settings in the Control Panel, add the following tag to any of the layouts of your website:
 
-``` bash
+```bash
 {{ all_in_one_accessibility() | raw }}
 ```
+
+---
+
+## Live Demo
+
+https://syliusv2.skynettechnologies.us/
+
+---
+
+## Visit the Sylius Site Accessibility Improvements demo to see how it performs with improved accessibility features:
+
+[![All in One Accessibility](https://img.youtube.com/vi/X70XtvGyvSs/0.jpg)](https://youtu.be/X70XtvGyvSs)
+
+---
 
 ## CORS Policy Configuration
 
 To avoid CORS policy issues, ensure the following URLs are allowed in your website. These URLs should be added to your CORS configuration or trusted domains list.
 
-| **Domain**                         | **Description**                              | **Usage**                        |
-|------------------------------------|----------------------------------------------|----------------------------------|
-| `https://*.skynettechnologies.com` | Skynet Technologies (Global Domain)          | API access and resources         |
-| `https://*.skynettechnologies.us`  | Skynet Technologies (US Domain)              | API access and resources         |
-| `https://*.googleapis.com`         | Google APIs                                  | Services like Fonts, Translation |
-| `https://*.gstatic.com`            | Fonts APIs                                   | Custom Fonts                     |
-| `https://vlibras.gov.br`           | VLibras - Brazilian Sign Language Service    | Sign Language                    |
+| **Domain** | **Description** | **Usage** |
+| --- | --- | --- |
+| https://\*.skynettechnologies.com | Skynet Technologies (Global Domain) | API access and resources |
+| https://\*.skynettechnologies.us | Skynet Technologies (US Domain) | API access and resources |
+| https://\*.googleapis.com | Google APIs | Services like Fonts, Translation |
+| https://\*.gstatic.com | Fonts APIs | Custom Fonts |
+| https://vlibras.gov.br | VLibras - Brazilian Sign Language Service | Sign Language |
 
-## Live Demo
-https://syliusv2.skynettechnologies.us/
-
-## Instructions
+**Instructions**
 
 1. Update your server's CORS configuration to include these URLs.
-2. Ensure wildcard subdomains (`*`) are supported where necessary.
+2. Ensure wildcard subdomains (\*) are supported where necessary.
 3. Verify the application functionality by testing requests to these domains.
 4. If issues persist, consult the documentation for CORS configuration guidance.
 
+---
+
 ## Configuration
 
-To configure the widget, access the Admin Panel and head to the **All in One Accessibility** menu in the dashboard. From there, you can register **[here](https://ada.skynettechnologies.us/trial-subscription)** with 10 Days free trial.
+To configure the widget, access the Admin Panel and head to the **All in One Accessibility** menu in the dashboard. From there, you can register [here](https://ada.skynettechnologies.us/trial-subscription) with a 10-day free trial.
+
+---
 
 ## Documentation
-- [Sylius All in One Accessibility](https://www.skynettechnologies.com/sylius-website-accessibility)
-- [How to install All in One Accessibility plugin on Sylius](https://www.skynettechnologies.com/blog/sylius-web-accessibility-widget-installation)
-- [All in One Accessibility - Features Guide](https://www.skynettechnologies.com/sites/default/files/accessibility-widget-features-list.pdf)
+
+- [**Sylius Accessibility Extension**](https://www.skynettechnologies.com/sylius-website-accessibility)
+- [**How to install an Accessibility Sylius ADA compliance Extension?**](https://www.skynettechnologies.com/blog/sylius-web-accessibility-widget-installation)
+- [**Sylius WCAG compliance accessibility – Features Guide**](https://www.skynettechnologies.com/sites/default/files/accessibility-widget-features-list.pdf)
+
+---
 
 ## Submit a Support Request
 
-Please visit our **[support page](https://www.skynettechnologies.com/report-accessibility-problem)** and fill out the form. Our team will get back to you as soon as possible.
+Please visit our [**support page**](https://www.skynettechnologies.com/report-accessibility-problem) and fill out the form. Our team will get back to you as soon as possible.
 
 ## Send Us an Email
 
-Alternatively, you can send an email to our support team:
-**[hello@skynettechnologies.com](mailto:hello@skynettechnologies.com)**
+Alternatively, you can send an email to our support team: [**hello@skynettechnologies.com**](mailto:hello@skynettechnologies.com)
+
+---
 
 ## Accessibility Paid Add-on Services
 
-### **[Manual Accessibility Audit Report](https://www.skynettechnologies.com/all-in-one-accessibility/addons#manual-accessibility-audit-report)**
+**[Sylius manual accessibility audit](https://www.skynettechnologies.com/website-accessibility-audit)**
 
-Enhance inclusivity and user experience by evaluating your website’s accessibility by accessibility experts.
-WCAG 2.0 / WCAG 2.1 / WCAG 2.2 Level AA conformance testing.
-Automated, semi-automated testing.
-Manual testing.
-Simple before-after UI/UX recommendations on how to fix the issues.
-Comprehensive audit report.
+- Enhance inclusivity and user experience by evaluating your Sylius website's accessibility by a [web accessibility consultant](https://www.skynettechnologies.com/web-accessibility-consultant).
+- WCAG 2.0 / WCAG 2.1 / WCAG 2.2 Level AA conformance testing
+- Automated, semi-automated testing
+- Manual testing
+- Simple before-after UI/UX recommendations on how to fix the issues
+- Comprehensive audit report
 
-### **[Manual Accessibility Remediation](https://www.skynettechnologies.com/all-in-one-accessibility/addons#manual-accessibility-remediation)**
-Enhance website accessibility and inclusivity with our Manual Accessibility Remediation add-on. This service includes fixing accessibility issues and thorough remediation of your website manually. Our experts ensure accessibility with WCAG standards, improve user experience for those with disabilities, and provide a detailed report on the improvements made.
+**[Sylius site manual accessibility remediation](https://www.skynettechnologies.com/full-website-accessibility-remediation)**
 
-### **[PDF/Document Accessibility Remediation](https://www.skynettechnologies.com/all-in-one-accessibility/addons#pdf-document-remediation)**
+Enhance Sylius ecommerce store accessibility and inclusivity with our manual accessibility remediation add-on. This service includes fixing accessibility issues and thorough remediation of your website manually. Our experts ensure accessibility with WCAG standards, improve user experience for those with disabilities, and provide a detailed report on the improvements made.
+
+**[PDF / Document Accessibility Remediation](https://www.skynettechnologies.com/pdf-accessibility-remediation)**
+
 The PDF / Document Remediation provides a list of inaccessible PDFs and remediated PDFs from where you can request PDF remediation service.
- 
-### **[VPAT Report/Accessibility Conformance Report(ACR)](https://www.skynettechnologies.com/all-in-one-accessibility/addons#vpat-acr-report)**
-The Voluntary Product Accessibility Template (VPAT), also known as an ACR (Accessibility Conformance Report) starts with an audit and provides current details for an accessible website, application, or any other digital assets.
 
-## Accessibility Widget Paid Add-ons
+**[VPAT Report / Accessibility Conformance Report (ACR)](https://www.skynettechnologies.com/vpat-accessibility-conformance-report)**
 
-### **[White Label](https://www.skynettechnologies.com/all-in-one-accessibility/addons#accessibility-widget-add-ons)**
-Remove the Skynet technologies logo as well as all of the footer links, popups, report a problem link and more for full white label control.
+The Voluntary Product Accessibility Template (VPAT), also known as an ACR (Accessibility Conformance Report), starts with an audit and provides current details for an accessible website, application, or any other digital assets.
 
-### **[Live Site Translations](https://www.skynettechnologies.com/all-in-one-accessibility/addons#accessibility-widget-add-ons)**
-Translate your site into over 140 languages instantly to enhance accessibility for non-native speakers, individuals with language acquisition difficulties, and those with learning disabilities.
+---
 
-###  **[Modify Accessibility Menu](https://www.skynettechnologies.com/all-in-one-accessibility/addons#accessibility-widget-add-ons)**
-Build and fine-tune your widget with the Modify Menu option. Reorder, remove and restructure the widget buttons to fit your users’ specific accessibility needs.
+## Accessibility Sylius Widget Paid Add-ons
 
-## Accessibility Partnership Opportunities
+**[White Label Accessibility](https://www.skynettechnologies.com/all-in-one-accessibility/addons#accessibility-widget-add-ons)**
 
-### **[Agencies Partnership](https://www.skynettechnologies.com/agency-partners)**
+Remove the Skynet Technologies logo as well as all of the footer links, popups, report a problem link and more for full white label control.
 
-Partner with us as an agency to provide comprehensive accessibility solutions to your clients. Get access to exclusive resources, training, and support to help you implement and manage accessibility features effectively.
+**[Instant live site translations](https://www.skynettechnologies.com/all-in-one-accessibility/addons#accessibility-widget-add-ons) for Sylius stores**
 
-### **[Affiliated Partnership](https://www.skynettechnologies.com/affiliate-partner)**
+Translate your Sylius store into over 190 languages instantly to enhance accessibility for non-native speakers, individuals with language acquisition difficulties, and those with learning disabilities.
 
-Join our affiliate program and earn commissions by promoting All in One Accessibility®. Share our Widget with your network and help businesses improve their website accessibility while generating revenue.
+**[Modify Accessibility Menu](https://www.skynettechnologies.com/all-in-one-accessibility/addons#accessibility-widget-add-ons) for Sylius Store**
 
-For more details, Please visit **[Partnership Opportunities Page](https://www.skynettechnologies.com/partner-program)**
+Build and fine-tune the widget with the Modify Menu option. Reorder, remove and restructure the widget buttons to fit your users' specific accessibility needs.
+
+---
+
+## Sylius Accessibility Partnership Opportunities
+
+**[Sylius accessibility agencies partnership](https://www.skynettechnologies.com/agency-partners)**
+
+Partner with us as an agency to provide comprehensive Sylius ADA, EAA, WCAG accessibility solutions to clients. Get access to exclusive resources, training, and support to implement and manage accessibility features effectively.
+
+**[Sylius accessibility affiliate partnership](https://www.skynettechnologies.com/affiliate-partner)**
+
+Sign up for our affiliate program and earn commissions by promoting the accessibility Sylius plugin. Share our widget with your network and help businesses improve their website accessibility while generating revenue.
+
+For more details, explore [**Sylius accessibility partnership opportunities**](https://www.skynettechnologies.com/partner-program).
+
+---
 
 ## Screenshots
 
@@ -313,17 +279,23 @@ For more details, Please visit **[Partnership Opportunities Page](https://www.sk
 
 ![App Screenshot](https://www.skynettechnologies.com/sites/default/files/screenshot-4-free.jpg?v=3)
 
-## Video
+![App Screenshot](https://www.skynettechnologies.com/sites/default/files/screenshot-5-free.jpg?v=3)
 
-[![All in One Accessibility](https://img.youtube.com/vi/X70XtvGyvSs/0.jpg)](https://www.youtube.com/watch?v=X70XtvGyvSs)
+![App Screenshot](https://www.skynettechnologies.com/sites/default/files/screenshot-6-free.jpg?v=3)
+
+![App Screenshot](https://www.skynettechnologies.com/sites/default/files/screenshot-7-free.jpg?v=3)
+
+---
 
 ## Credits
 
-This addon is developed and maintained by **[Skynet Technologies USA LLC](https://www.skynettechnologies.com)**
+This addon is developed and maintained by [website accessibility company](https://www.skynettechnologies.com/) – Skynet Technologies USA LLC
 
 ## Current Maintainers
 
-- **[Skynet Technologies USA LLC](https://github.com/skynettechnologies)**
+- [**Skynet Technologies USA LLC**](https://github.com/skynettechnologies)
+
+---
 
 ## License
 
