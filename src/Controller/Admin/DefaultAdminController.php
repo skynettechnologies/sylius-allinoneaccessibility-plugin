@@ -145,12 +145,23 @@ class DefaultAdminController extends AbstractController
         
        
         // Get widget settings
-        $widgetSettingsUrl = 'https://ada.skynettechnologies.us/api/widget-settings-update-platform';
+        $widgetSettingsUrl = 'https://ada.skynettechnologies.us/api/widget-settings-platform';
         $widgetSettingsResponse = $this->client->request('POST', $widgetSettingsUrl, [
             'json' => ['website_url' => $domain],
             'headers' => ['Content-Type' => 'application/json'],
         ]);
         $widgetData = $widgetSettingsResponse->toArray(false);
+
+        // Optional: final autologin call (can be removed if unnecessary)
+        $autologinUrl = 'https://ada.skynettechnologies.us/api/get-autologin-link';
+        $autologinResponse = $this->client->request('POST', $autologinUrl, [
+            'json' => ['website' => $base64Domain],
+            'headers' => ['Content-Type' => 'application/json'],
+        ]);
+        $autologinData = $autologinResponse->toArray(false);
+        if (isset($autologinData['status'])) {
+            $message .= " Autologin Link generated.";
+        }
         $url = $this->generateUrl('skynettechnologies_sylius_allinoneaccessibility_plugin_admin_allinoneaccessibility_create', ['page' => $page]);
         return $this->render('@SkynettechnologiesSyliusAllinOneAccessibilityPlugin/Admin/AllinOneAccessibility/_form.html.twig', [
             'url' => $url,
